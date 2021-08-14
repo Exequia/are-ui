@@ -3,16 +3,49 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { SharedModule } from './shared/shared.module';
+
+/* STORE */
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { RootState } from 'store';
+import * as fromReducers from '../store/reducers';
+import { NavbarComponent } from './theme/components/navbar/navbar.component';
+import { SidebarComponent } from './theme/components/sidebar/sidebar.component';
+
+import { TranslateModule } from '@ngx-translate/core';
+import { HomeComponent } from './theme/views/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+
+export const reducers: ActionReducerMap<RootState> = {
+  ui: fromReducers.uiReducer,
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    SidebarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    StoreModule.forRoot(reducers, {}),
+    SharedModule,
+    HttpClientModule,
+    TranslateModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
