@@ -7,18 +7,16 @@ import * as fromRoot from 'store';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(MatSidenav) sidenav: MatSidenav | undefined;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   constructor(private store: Store<fromRoot.RootState>) {}
 
   ngAfterViewInit() {
-    this.store
-      .pipe(select(fromRoot.isSideBarOpen))
-      .subscribe((isOpen: boolean | undefined) => {
-        isOpen !== undefined && this.sidenav?.toggle();
-      });
+    this.store.pipe(select(fromRoot.isSideBarOpen)).subscribe((isOpen: boolean | undefined) => {
+      isOpen !== undefined && this.sidenav?.toggle();
+    });
   }
 }

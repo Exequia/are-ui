@@ -1,5 +1,31 @@
 {
   "commons": {
-    "accept": "Aceptado, aceptadito"
+    "accept": "Aceptar",
+    "cancel": "Cancelar",
+    "email": "Email",
+    "password": "Contraseña",
+    "clear": "Borrar",
+    "errors": {
+      "required": "El campo es obligatorio",
+      "email": "El formato introducido no es válido",
+      "notSame": "Los valores no coinciden"
+    }
+  },
+  "login": {
+    "title": "Identificación",
+    "subtitle": "Introduzca las credenciales",
+    "emailPattern": "El formato del email debe ser aa@bb.cc"
+  },
+  "user": {
+    "personalData": "Datos Personales",
+    "appData": "Datos de la aplicación",
+    "name": "Nombre",
+    "surname": "Primer apellido",
+    "lastName": "Segundo apellido",
+    "nickName": "Nombre de usuario",
+    "passwordPH": "Entre su contraseña",
+    "confirmPassword": "Confirmación de contraseña",
+    "confirmPasswordPH": "Repita la contraseña",
+    "confirmPasswordHint": "Las contraseñas deben ser exactamente iguales"
   }
 }

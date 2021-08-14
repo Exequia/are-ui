@@ -1,18 +1,17 @@
-// import { NavigationExtras } from '@angular/router';
-// import { User } from '@ice';
+import { NavigationExtras } from '@angular/router';
+import { Role, RolesName } from 'app/users/models/roles';
+import { User } from 'app/users/models/user';
 
-// export interface AuthState {
-//   user: User;
-//   loading: boolean;
-//   error: any;
-//   role: string;
-//   entryRoute: { path: any[]; extras: NavigationExtras };
-// }
+export interface AuthState {
+  user: User | undefined;
+  loading: boolean;
+  error: any;
+  role?: Role;
+  entryRoute?: { path: any[]; extras: NavigationExtras };
+}
 
-// export const initialAuthState: AuthState = {
-//   user: null,
-//   loading: false,
-//   error: null,
-//   role: '',
-//   entryRoute: null
-// };
+export const initialAuthState: AuthState = {
+  user: undefined,
+  loading: false,
+  error: null
+};

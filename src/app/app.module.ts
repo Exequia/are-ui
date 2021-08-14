@@ -20,16 +20,12 @@ import { HomeComponent } from './theme/views/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 
 export const reducers: ActionReducerMap<RootState> = {
-  ui: fromReducers.uiReducer,
+  auth: fromReducers.authReducer,
+  ui: fromReducers.uiReducer
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    HomeComponent,
-  ],
+  declarations: [AppComponent, NavbarComponent, SidebarComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,14 +34,14 @@ export const reducers: ActionReducerMap<RootState> = {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
+      registrationStrategy: 'registerWhenStable:30000'
     }),
     StoreModule.forRoot(reducers, {}),
     SharedModule,
     HttpClientModule,
-    TranslateModule,
+    TranslateModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

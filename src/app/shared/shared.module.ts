@@ -21,10 +21,10 @@ export function createTranslateLoader(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
+        deps: [HttpClient]
+      }
+    })
   ],
-  exports: [MaterialModule, TranslateModule],
+  exports: [MaterialModule, HttpClientModule, TranslateModule]
 })
 export class SharedModule {}

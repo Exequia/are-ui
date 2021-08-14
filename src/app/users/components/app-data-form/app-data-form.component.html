@@ -1,0 +1,44 @@
+<form class="form" [formGroup]="appDataForm">
+  <mat-form-field>
+    <mat-label>{{ 'user.nickName' | translate }}</mat-label>
+    <input matInput [placeholder]="'user.nickName' | translate" type="text" formControlName="nickName" tabindex="4" />
+    <button mat-button *ngIf="nickName && (nickName.dirty || nickName.touched)" matSuffix mat-icon-button (click)="nickName.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched) && password?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'commons.email' | translate }}</mat-label>
+    <input matInput placeholder="aa@bb.xx" type="email" formControlName="email" tabindex="5" />
+    <button mat-button *ngIf="email && (email?.dirty || email?.touched)" matSuffix mat-icon-button (click)="email?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint [innerHtml]="'login.emailPattern' | translate"></mat-hint>
+    <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched) && email?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
+    <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched) && email?.errors?.email" [innerHtml]="'commons.errors.email' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'commons.password' | translate }}</mat-label>
+    <input matInput [placeholder]="'user.passwordPH' | translate" type="password" formControlName="password" tabindex="6" />
+    <button mat-button *ngIf="password && (password?.dirty || password?.touched)" matSuffix mat-icon-button (click)="password?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched) && password?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'user.confirmPassword' | translate }}</mat-label>
+    <input matInput type="password" [placeholder]="'user.confirmPasswordPH' | translate" formControlName="confirmPassword" tabindex="7" [errorStateMatcher]="matcher" />
+    <button mat-button *ngIf="confirmPassword && (confirmPassword?.dirty || confirmPassword?.touched)" matSuffix mat-icon-button (click)="confirmPassword?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint [innerHtml]="'user.confirmPasswordHint' | translate"></mat-hint>
+    <mat-error
+      *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched) && confirmPassword?.errors?.required"
+      [innerHtml]="'commons.errors.required' | translate"
+    ></mat-error>
+    <mat-error *ngIf="appDataForm?.errors?.notSame" [innerHtml]="'commons.errors.notSame' | translate"></mat-error>
+  </mat-form-field>
+</form>
+<!-- <pre>{{ appDataForm.value | json }}</pre>
+<pre>{{ appDataForm.status | json }}</pre>
+<pre>{{ appDataForm.errors | json }}</pre> -->
