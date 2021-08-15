@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginRequest } from 'app/users/models/loginRequest';
+import { Credentials } from 'app/users/models/credentials';
 import { isNil } from 'lodash';
 
 @Component({
@@ -10,8 +10,8 @@ import { isNil } from 'lodash';
 })
 export class LoginFormComponent implements OnInit {
   loginForm!: FormGroup;
-  @Input() loginRequest!: LoginRequest;
-  @Output() validForm: EventEmitter<LoginRequest> = new EventEmitter();
+  @Input() credentials!: Credentials;
+  @Output() validForm: EventEmitter<Credentials> = new EventEmitter();
 
   constructor() {
     this.initDefaultParams();
@@ -25,8 +25,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   private initDefaultModel() {
-    if (isNil(this.loginRequest)) {
-      this.loginRequest = {
+    if (isNil(this.credentials)) {
+      this.credentials = {
         email: '',
         password: ''
       };
@@ -36,8 +36,8 @@ export class LoginFormComponent implements OnInit {
   private initDefaultForm() {
     if (isNil(this.loginForm)) {
       this.loginForm = new FormGroup({
-        email: new FormControl(this.loginRequest?.email, [Validators.email, Validators.required]),
-        password: new FormControl(this.loginRequest?.password, Validators.required)
+        email: new FormControl(this.credentials?.email, [Validators.email, Validators.required]),
+        password: new FormControl(this.credentials?.password, Validators.required)
       });
     }
   }

@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 
 /* STORE */
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
-import { RootState } from 'store';
+import { effects, RootState } from 'store';
 import * as fromReducers from '../store/reducers';
 import { NavbarComponent } from './theme/components/navbar/navbar.component';
 import { SidebarComponent } from './theme/components/sidebar/sidebar.component';
@@ -18,6 +18,8 @@ import { SidebarComponent } from './theme/components/sidebar/sidebar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeComponent } from './theme/views/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export const reducers: ActionReducerMap<RootState> = {
   auth: fromReducers.authReducer,
@@ -37,6 +39,11 @@ export const reducers: ActionReducerMap<RootState> = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     StoreModule.forRoot(reducers, {}),
+    StoreDevtoolsModule.instrument({
+      name: 'ARE ui Store DevTools',
+      logOnly: environment.production
+    }),
+    EffectsModule.forRoot(effects),
     SharedModule,
     HttpClientModule,
     TranslateModule

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginFormComponent } from 'app/users/components/login-form/login-form.component';
-import { LoginRequest } from 'app/users/models/loginRequest';
+import { Credentials } from 'app/users/models/credentials';
 import { Token } from 'app/users/models/token';
 import { UserUtils } from 'app/users/services/utils/userUtils.service';
 
@@ -11,12 +11,12 @@ import { UserUtils } from 'app/users/services/utils/userUtils.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: LoginFormComponent;
-  loginRequest!: LoginRequest;
+  credentials!: Credentials;
 
   constructor(private userService: UserUtils) {
     // this.loginForm = undefined;
 
-    this.loginRequest = {
+    this.credentials = {
       email: 'fnx@gmail.com',
       password: 'pass'
     };
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.loginForm?.loginForm?.reset();
   }
 
-  handelValidForm(login: LoginRequest) {
+  handelValidForm(login: Credentials) {
     this.userService.login(login).subscribe((token: Token) => {
       console.log(token);
       // this.app.areService.token = token.accessToken;
