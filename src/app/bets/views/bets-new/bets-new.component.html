@@ -1,0 +1,13 @@
+<ng-container *ngFor="let type of types | async">
+  <mat-card *ngIf="type" class="cursor-pointer mb-3" (click)="selectType(type)" [ngClass]="{ disabled: type.disabled, zoom: !type.disabled }">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon *ngIf="type.icon" class="me-2">
+          <span class="material-icons-round"> {{ type.icon }} </span>
+        </mat-icon>
+        {{ 'bets.type.' + type.id + '.title' | translate }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ 'bets.type.' + type.id + '.subtitle' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-container>

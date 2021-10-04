@@ -10,8 +10,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
-const materialModules = [MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatCardModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatStepperModule];
+const materialModules = [
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatStepperModule,
+  MatCheckboxModule
+];
 
 @NgModule({
   declarations: [],

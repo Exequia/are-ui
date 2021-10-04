@@ -8,14 +8,14 @@
   right: 0;
 
   mat-sidenav {
-    padding: $min-relative-size;
+    padding: $med-relative-size $min-relative-size;
     min-width: 15%;
   }
 }
 
 .container {
-  margin: $min-relative-size;
-  display: flex;
+  margin-top: $med-relative-size;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   // height: 100%;

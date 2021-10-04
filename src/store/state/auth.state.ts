@@ -1,5 +1,5 @@
 import { NavigationExtras } from '@angular/router';
-import { Role, RolesName } from 'app/users/models/roles';
+import { Role } from 'app/users/models/roles';
 import { User } from 'app/users/models/user';
 
 export interface AuthState {

@@ -30,6 +30,8 @@ export class LoginFormComponent implements OnInit {
         email: '',
         password: ''
       };
+      // } else {
+      //   this.
     }
   }
 
@@ -37,7 +39,8 @@ export class LoginFormComponent implements OnInit {
     if (isNil(this.loginForm)) {
       this.loginForm = new FormGroup({
         email: new FormControl(this.credentials?.email, [Validators.email, Validators.required]),
-        password: new FormControl(this.credentials?.password, Validators.required)
+        password: new FormControl(this.credentials?.password, Validators.required),
+        rememberMe: new FormControl(this.credentials?.rememberMe)
       });
     }
   }

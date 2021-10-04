@@ -1,6 +1,12 @@
-@import "variables";
+@import 'variables';
 
 .close {
   padding-bottom: $min-relative-size;
   text-align: center;
+}
+
+p {
+  padding: $min-relative-size;
+  display: flex;
+  flex-direction: row;
 }

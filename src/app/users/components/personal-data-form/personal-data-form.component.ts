@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UserUtils } from 'app/users/services/utils/userUtils.service';
 
@@ -11,6 +11,7 @@ import { isNil } from 'lodash';
 })
 export class PersonalDataFormComponent implements OnInit {
   @Input() personalDataForm!: FormGroup;
+  @Output() updateForm: EventEmitter<any> = new EventEmitter();
 
   constructor(private userUtils: UserUtils) {}
 
@@ -20,11 +21,11 @@ export class PersonalDataFormComponent implements OnInit {
 
   private initDefaultParams() {
     this.initDefaultForm();
+    this.personalDataForm.valueChanges.subscribe(formValues => this.updateForm.emit(formValues));
   }
 
   private initDefaultForm() {
     if (isNil(this.personalDataForm)) {
-      console.error('nuevo form');
       this.personalDataForm = this.userUtils.getPersonalDataForm();
     }
   }

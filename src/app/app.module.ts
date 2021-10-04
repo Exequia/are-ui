@@ -20,14 +20,17 @@ import { HomeComponent } from './theme/views/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { PageNotFoundComponent } from './theme/views/page-not-found/page-not-found.component';
 
 export const reducers: ActionReducerMap<RootState> = {
   auth: fromReducers.authReducer,
-  ui: fromReducers.uiReducer
+  ui: fromReducers.uiReducer,
+  user: fromReducers.userReducer,
+  bets: fromReducers.betsReducer
 };
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SidebarComponent, HomeComponent],
+  declarations: [AppComponent, NavbarComponent, SidebarComponent, HomeComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

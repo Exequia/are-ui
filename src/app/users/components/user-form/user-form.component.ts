@@ -19,9 +19,19 @@ export class UserFormComponent implements OnInit {
 
   private initDefaultParams() {
     if (isNil(this.userForm)) {
-      console.error('nuevo userForm');
       this.userForm = this.userUtils.getUserForm();
     }
-    console.error('nuevo userForm', this.userForm.get('appData'));
+  }
+
+  doUpdate(formName: string, formValues: any) {
+    this.userForm?.get(formName)?.setValue(formValues);
+  }
+
+  get personalDataForm() {
+    return <FormGroup>this.userForm?.get('personalDataForm');
+  }
+
+  get appDataForm() {
+    return <FormGroup>this.userForm?.get('appDataForm');
   }
 }

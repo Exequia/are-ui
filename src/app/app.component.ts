@@ -15,7 +15,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private store: Store<fromRoot.RootState>) {}
 
   ngAfterViewInit() {
-    this.store.pipe(select(fromRoot.isSideBarOpen)).subscribe((isOpen: boolean | undefined) => {
+    this.store.select(fromRoot.isSideBarOpen).subscribe((isOpen: boolean | undefined) => {
       isOpen !== undefined && this.sidenav?.toggle();
     });
   }

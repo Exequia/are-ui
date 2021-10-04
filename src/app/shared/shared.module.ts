@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -23,8 +24,9 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    FlexLayoutModule
   ],
-  exports: [MaterialModule, HttpClientModule, TranslateModule]
+  exports: [MaterialModule, HttpClientModule, TranslateModule, FlexLayoutModule]
 })
 export class SharedModule {}

@@ -4,9 +4,9 @@ import * as fromState from '../../state';
 
 const _uiReducer = createReducer(
   fromState.initialUiState,
-  on(toggleSidenav, (state) => ({
+  on(toggleSidenav, state => ({
     ...state,
-    sideBar: { ...state.sideBar, isOpen: !state.sideBar?.isOpen || false },
+    sideBar: { ...state.sideBar, isOpen: !state.sideBar?.isOpen || false }
   }))
 );
 
@@ -15,7 +15,6 @@ export function uiReducer(state: any, action: any) {
 }
 
 export const getSnackBar = (state: fromState.UiState) => state.snackBar;
-export const getProgressBarState = (state: fromState.UiState) =>
-  state.progressBar;
+export const getProgressBarState = (state: fromState.UiState) => state.progressBar;
 // export const getNavigationState = (state: fromState.UiState) => state.navigation;
-export const getSideBar = (state: fromState.UiState) => state.sideBar;
+// export const getSideBar = (state: fromState.UiState) => state.sideBar;

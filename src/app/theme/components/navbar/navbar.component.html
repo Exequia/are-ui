@@ -3,13 +3,13 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="name-app">
-    <button mat-icon-button aria-label="Home icon">
+    <button mat-icon-button aria-label="Home icon" routerLink="/" routerLinkActive="active">
       <mat-icon>home</mat-icon>
     </button>
   </span>
   <span class="spacer"></span>
   <span>
-    <button mat-icon-button aria-label="Login icon" [routerLink]="['/users']">
+    <button mat-icon-button aria-label="Login icon" routerLink="/users" routerLinkActive="active">
       <mat-icon>login</mat-icon>
     </button>
   </span>
