@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Bet } from 'app/bets/models/bet';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import * as fromRoot from 'store';
 
 @Component({

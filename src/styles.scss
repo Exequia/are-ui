@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -9,8 +11,37 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+.display-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: space-between;
+}
+
+formly-group {
+  @extend .display-flex;
+  flex-direction: row;
+
+  formly-field {
+    padding: 0 $min-relative-size;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    flex-direction: column;
+    formly-field {
+      padding: 0;
+    }
+  }
+}
+
 .mat-card {
-  max-width: 400px;
   min-width: 250px;
   cursor: pointer;
 
@@ -30,6 +61,11 @@ body {
     background-color: silver;
     cursor: not-allowed;
   }
+}
+
+.mat-slider-horizontal {
+  top: -15px;
+  height: inherit !important;
 }
 
 .form {

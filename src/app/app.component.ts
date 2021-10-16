@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { select, Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
 import * as fromRoot from 'store';
 
 @Component({

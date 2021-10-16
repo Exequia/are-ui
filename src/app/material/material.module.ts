@@ -8,9 +8,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
+import { DateAdapter, MatRippleModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { CustomDateAdapter } from './custom.date.adapter';
 
 const materialModules = [
   MatToolbarModule,
@@ -22,12 +26,18 @@ const materialModules = [
   MatInputModule,
   MatRippleModule,
   MatStepperModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatNativeDateModule,
+  MatDatepickerModule
 ];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, materialModules],
-  exports: [materialModules]
+  exports: [materialModules],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: DateAdapter, useClass: CustomDateAdapter }
+  ]
 })
 export class MaterialModule {}

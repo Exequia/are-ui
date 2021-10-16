@@ -55,7 +55,43 @@
       }
     },
     "type": {
-      "pregnancy": { "title": "Embarazo", "subtitle": "Configuración de fecha, hora, sexo, nombre, etc..." },
+      "pregnancy": {
+        "title": "Embarazo",
+        "subtitle": "Configuración de fecha, hora, sexo, nombre, etc...",
+        "fields": {
+          "name": {
+            "label": "Nombre",
+            "placeholder": "King Kong"
+          },
+          "sex": {
+            "label": "Sexo",
+            "placeholder": "King Kong",
+            "description": "Selectionar una de las opciones",
+            "options": {
+              "male": "Hombre",
+              "female": "Mujer"
+            }
+          },
+          "birthDate": {
+            "label": "Fecha de nacimiento",
+            "placeholder": "dd/mm/yyyy",
+            "description": "Haga click y escoja la fecha esperada de nacimiento"
+          },
+          "birthTime": {
+            "label": "Hora de nacimiento",
+            "placeholder": "19:50",
+            "description": "Introducir la hora esperada de nacimiento"
+          },
+          "weight": {
+            "label": "Peso",
+            "description": "Peso en Kilogramos"
+          },
+          "height": {
+            "label": "Altura",
+            "description": "Altura en CENTIMETROS"
+          }
+        }
+      },
       "match": { "title": "Encuentro", "subtitle": "Configuración de un enfretamiento siemple y sus posibles resultados" }
     },
     "opens": {
@@ -63,6 +99,9 @@
       "endDate": "Fecha fin",
       "owner": "Propietario",
       "status": "Estado"
+    },
+    "bet": {
+      "validUntil": "Finalizará el"
     }
   }
 }

@@ -1,19 +1,28 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'environments/environment';
+import { FormGroup } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Bet } from '../models/bet';
+import { BetProfile } from '../models/betProfile';
+import { BetId } from '../models/betType';
+import { BetsUtilsService } from './bets-utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BetsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private betsUtils: BetsUtilsService) {}
+
+  getBetsProfiles(): Observable<BetProfile[]> {
+    const profiles: BetProfile[] = [{}];
+    return of(profiles);
+  }
 
   getOpenBets(): Observable<Bet[]> {
     const bet: Bet = {
-      type: { id: 'pregnancy', icon: 'pregnant_woman' },
+      type: { id: BetId.pregnancy, icon: 'pregnant_woman' },
       config: {
         ownerId: 'Fénix',
         startDate: new Date(),
@@ -23,7 +32,17 @@ export class BetsService {
           id: 1,
           name: 'active'
         },
-        form: {}
+        formlyData: {
+          id: 'test',
+          model: { name: 'Mini Mike' },
+          fields: this.betsUtils.getBetProfileFields(BetId.pregnancy),
+          form: new FormGroup({}),
+          options: {
+            formState: {
+              awesomeIsForced: false
+            }
+          }
+        }
       }
     };
     const data: Bet[] = [bet];

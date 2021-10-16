@@ -1,1 +1,12 @@
-<pre>bet: {{ bet | async | json }}</pre>
+<mat-card *ngIf="bet | async; let bet">
+  <mat-card-header>
+    <mat-card-title>
+      {{ bet.config?.name }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ 'bets.bet.validUntil' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <are-basic-form [formlyData]="bet.config?.formlyData"></are-basic-form>
+  </mat-card-content>
+</mat-card>
