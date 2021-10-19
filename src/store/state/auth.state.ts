@@ -1,9 +1,9 @@
 import { NavigationExtras } from '@angular/router';
 import { Role } from 'app/users/models/roles';
-import { User } from 'app/users/models/user';
+import { AppData, User } from 'app/users/models/user';
 
 export interface AuthState {
-  user: User | undefined;
+  user?: AppData;
   loading: boolean;
   error: any;
   role?: Role;
@@ -11,7 +11,6 @@ export interface AuthState {
 }
 
 export const initialAuthState: AuthState = {
-  user: undefined,
   loading: false,
   error: null
 };

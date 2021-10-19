@@ -1,5 +1,5 @@
 <form class="form" [formGroup]="userForm">
-  <mat-vertical-stepper>
+  <mat-vertical-stepper #stepper>
     <mat-step>
       <ng-template matStepLabel>{{ 'users.personalData' | translate }}</ng-template>
       <ng-template matStepContent>

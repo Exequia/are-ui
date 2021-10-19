@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Credentials } from 'app/users/models/credentials';
-import { Token } from 'app/users/models/token';
+import { AuthResponse } from 'app/users/models/auth';
 import { User } from 'app/users/models/user';
 import { environment } from 'environments/environment';
 import * as jwtDecode from 'jwt-decode';
@@ -19,9 +19,9 @@ import * as fromRoot from 'store';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  public login(credentials: Credentials): Observable<Token> {
+  public login(credentials: Credentials): Observable<AuthResponse> {
     const url = `${environment.apiBaseURL}authenticate/`;
-    return this.http.post<Token>(url, credentials).pipe(retry(3), catchError(this.handleError));
+    return this.http.post<AuthResponse>(url, credentials).pipe(retry(3), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

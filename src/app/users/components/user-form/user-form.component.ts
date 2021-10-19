@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { UserUtils } from 'app/users/services/utils/userUtils.service';
 import { isNil } from 'lodash';
 
@@ -10,6 +11,7 @@ import { isNil } from 'lodash';
 })
 export class UserFormComponent implements OnInit {
   @Input() userForm!: FormGroup;
+  @ViewChild('stepper') stepper: MatStepper | undefined;
 
   constructor(private userUtils: UserUtils) {}
 
@@ -21,10 +23,12 @@ export class UserFormComponent implements OnInit {
     if (isNil(this.userForm)) {
       this.userForm = this.userUtils.getUserForm();
     }
-  }
 
-  doUpdate(formName: string, formValues: any) {
-    this.userForm?.get(formName)?.setValue(formValues);
+    this.personalDataForm?.statusChanges?.subscribe(status => {
+      if (status === 'VALID') {
+        this.stepper?.next();
+      }
+    });
   }
 
   get personalDataForm() {

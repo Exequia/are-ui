@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Credentials } from 'app/users/models/credentials';
 import { isNil } from 'lodash';
@@ -9,15 +9,15 @@ import { isNil } from 'lodash';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm: FormGroup | undefined;
   @Input() credentials!: Credentials;
   @Output() validForm: EventEmitter<Credentials> = new EventEmitter();
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.initDefaultParams();
   }
-
-  ngOnInit(): void {}
 
   private initDefaultParams() {
     this.initDefaultModel();
@@ -30,13 +30,11 @@ export class LoginFormComponent implements OnInit {
         email: '',
         password: ''
       };
-      // } else {
-      //   this.
     }
   }
 
   private initDefaultForm() {
-    if (isNil(this.loginForm)) {
+    if (isNil(this.loginForm) && this.credentials) {
       this.loginForm = new FormGroup({
         email: new FormControl(this.credentials?.email, [Validators.email, Validators.required]),
         password: new FormControl(this.credentials?.password, Validators.required),

@@ -21,9 +21,8 @@ export class UserUtils {
     return this.initPersonalDataForm(personalData || this.initPersonalDataModel());
   }
 
-  login(credentials: Credentials): Observable<any> {
+  login(credentials: Credentials) {
     this.store.dispatch(fromRoot.doLogin(credentials));
-    return of({});
   }
 
   public getUserForm(user?: User): FormGroup {
@@ -41,7 +40,10 @@ export class UserUtils {
 
   private initPersonalDataForm(personalData: PersonalData): FormGroup {
     return new FormGroup({
-      name: new FormControl(personalData.name, [Validators.required]),
+      name: new FormControl(personalData.name, {
+        validators: Validators.required,
+        updateOn: 'blur'
+      }),
       surname: new FormControl(personalData.surname),
       lastName: new FormControl(personalData.lastName)
     });
