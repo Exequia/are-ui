@@ -25,7 +25,6 @@ import { PageNotFoundComponent } from './theme/views/page-not-found/page-not-fou
 export const reducers: ActionReducerMap<RootState> = {
   auth: fromReducers.authReducer,
   ui: fromReducers.uiReducer,
-  user: fromReducers.userReducer,
   bets: fromReducers.betsReducer
 };
 

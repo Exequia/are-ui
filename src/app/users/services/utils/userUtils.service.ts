@@ -93,4 +93,8 @@ export class UserUtils {
       password: ''
     };
   }
+
+  public castUserToRequest(user: User) {
+    return user;
+  }
 }

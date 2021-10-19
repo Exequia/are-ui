@@ -11,17 +11,24 @@ import * as jwtDecode from 'jwt-decode';
 import { EMPTY, from, Observable, throwError } from 'rxjs';
 import { catchError, delay, map, retry, take } from 'rxjs/operators';
 import * as fromRoot from 'store';
+import { UserUtils } from '../utils/userUtils.service';
 // import { errorMessageShowtime } from 'store/effects/ui/show-error';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userUtils: UserUtils) {}
 
   public login(credentials: Credentials): Observable<AuthResponse> {
     const url = `${environment.apiBaseURL}authenticate/`;
     return this.http.post<AuthResponse>(url, credentials).pipe(retry(3), catchError(this.handleError));
+  }
+
+  public createUser(user: User): Observable<AuthResponse> {
+    const createUserRequest = this.userUtils.castUserToRequest(user);
+    const url = `http://localhost:3001/api/create/`;
+    return this.http.post<AuthResponse>(url, createUserRequest).pipe(retry(3), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

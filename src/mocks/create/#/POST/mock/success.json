@@ -1,0 +1,16 @@
+{
+  "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJBcmUgQkUgVXNlcnMiLCJzdWIiOiJmbnhAZ21haWwuY29tIiwiaWF0IjoxNjIxNzA4MDc5LCJleHAiOjE2MjE3NTgwNzksIlJvbGVzIjpbImFkbWluIl19.BabF0qa4prUEQmd3SvKP6JdUBaB0WnogKXvQ2RY1uWxIyRfocJoovvm132wvoHVJwf6vV6qGdjkcrgrnm50mEQ",
+  "tokenType": "Bearer",
+  "user": {
+    "nickName": "Fénix",
+    "email": "fnx@gmail.com",
+    "status": "active",
+    "profile": "god",
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
+  }
+}

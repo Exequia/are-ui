@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Credentials } from 'app/users/models/credentials';
 import { AuthResponse } from 'app/users/models/auth';
 import { environment } from 'environments/environment';
+import { User } from 'app/users/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class StorageService {
       localStorage.setItem('userEmail', credentials.email);
       localStorage.setItem('accessToken', authResponse.accessToken);
     }
+  }
+
+  setUserCredentials(authResponse: AuthResponse) {
+    localStorage.setItem('userEmail', authResponse?.user?.email);
+    localStorage.setItem('accessToken', authResponse?.accessToken);
   }
 }
