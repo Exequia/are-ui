@@ -28,6 +28,13 @@ export class AuthEffects {
     )
   );
 
+  logOut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromRoot.doLogOut),
+      map(() => fromRoot.Navigate({ path: ['/users/login'] }))
+    )
+  );
+
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromRoot.doCreateUser),

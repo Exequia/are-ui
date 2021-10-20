@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PageNotFoundComponent } from './theme/views/page-not-found/page-not-found.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 export const reducers: ActionReducerMap<RootState> = {
   auth: fromReducers.authReducer,
@@ -48,7 +49,8 @@ export const reducers: ActionReducerMap<RootState> = {
     EffectsModule.forRoot(effects),
     SharedModule,
     HttpClientModule,
-    TranslateModule
+    TranslateModule,
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
