@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseURL: 'http://heroku:3001/api/'
+  apiBaseURL: 'http://192.168.1.1:8080/api/'
 };

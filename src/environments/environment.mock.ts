@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseURL: 'http://heroku:3001/api/'
+  apiBaseURL: 'http://localhost:3001/api/'
 };
