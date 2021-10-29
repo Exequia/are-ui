@@ -16,6 +16,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
 import { FormlyFieldTimeInputComponent } from './components/formly-field-time-input/formly-field-time-input.component';
+import { AuthInterceptor, authInterceptorProviders } from './interceptors/auth.interceptor';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -47,6 +48,7 @@ const formlyModules = [FormlyMaterialModule, FormlyMatDatepickerModule, FormlyMa
     }),
     ...formlyModules
   ],
+  providers: [authInterceptorProviders],
   exports: [...formlyComponents, MaterialModule, HttpClientModule, TranslateModule, FlexLayoutModule, ReactiveFormsModule, FormlyModule, ...formlyModules]
 })
 export class SharedModule {}

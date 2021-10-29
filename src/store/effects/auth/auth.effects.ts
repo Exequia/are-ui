@@ -31,7 +31,10 @@ export class AuthEffects {
   logOut$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromRoot.doLogOut),
-      map(() => fromRoot.Navigate({ path: ['/users/login'] }))
+      map(() => {
+        this.storageService.signOut();
+        return fromRoot.Navigate({ path: ['/users/login'] });
+      })
     )
   );
 

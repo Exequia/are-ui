@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Credentials } from 'app/users/models/credentials';
 import { AuthResponse } from 'app/users/models/auth';
+import { Credentials } from 'app/users/models/credentials';
 import { environment } from 'environments/environment';
-import { User } from 'app/users/models/user';
+
+const TOKEN_KEY = 'auth-token';
+const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +27,47 @@ export class StorageService {
 
   setCredentials(credentials: Credentials, authResponse: AuthResponse) {
     if (credentials.rememberMe) {
-      sessionStorage.setItem('userEmail', credentials.email);
-      sessionStorage.setItem('accessToken', authResponse.accessToken);
+      sessionStorage.removeItem(USER_KEY);
+      sessionStorage.setItem(USER_KEY, JSON.stringify(authResponse.user));
+      sessionStorage.removeItem(TOKEN_KEY);
+      sessionStorage.setItem(TOKEN_KEY, authResponse.accessToken);
     } else {
-      localStorage.setItem('userEmail', credentials.email);
-      localStorage.setItem('accessToken', authResponse.accessToken);
+      this.setUserCredentials(authResponse);
     }
   }
 
   setUserCredentials(authResponse: AuthResponse) {
-    localStorage.setItem('userEmail', authResponse?.user?.email);
-    localStorage.setItem('accessToken', authResponse?.accessToken);
+    localStorage.removeItem(USER_KEY);
+    localStorage.setItem(USER_KEY, JSON.stringify(authResponse.user));
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.setItem(TOKEN_KEY, authResponse.accessToken);
+  }
+
+  signOut(): void {
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+
+  // public saveToken(token: string): void {
+  //   window.sessionStorage.removeItem(TOKEN_KEY);
+  //   window.sessionStorage.setItem(TOKEN_KEY, token);
+  // }
+
+  getToken(): string | null {
+    return sessionStorage.getItem(TOKEN_KEY);
+  }
+
+  // public saveUser(user: any): void {
+  //   window.sessionStorage.removeItem(USER_KEY);
+  //   window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  // }
+
+  public getUser(): any {
+    const user = sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return {};
   }
 }

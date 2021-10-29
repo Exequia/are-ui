@@ -1,14 +1,14 @@
-var mockServer = require("node-mock-server");
-var path = require("path");
+var mockServer = require('node-mock-server');
+var path = require('path');
 
 mockServer({
-  restPath: path.join(__dirname, "src/mocks"),
-  optionsFallbackPath: `${__dirname}/_fallback/#options/OPTIONS/`,
+  restPath: path.join(__dirname, 'src/mocks'),
+  // optionsFallbackPath: `${__dirname}/_fallback/#options/OPTIONS/`,
   dirName: __dirname,
-  title: "ARE UI",
+  title: 'ARE UI',
   version: 1,
   // urlBase: "http://localhost:3001",
-  urlPath: "/api",
+  urlPath: '/api',
   port: 3001,
   // jvmOptions: "-Dmockserver.enableCORSForAllResponses=true",
   // uiPath: "/",
@@ -49,9 +49,9 @@ mockServer({
   //   overwriteExistingDescriptions: true,
   //   responseFuncPath: path.join(__dirname, "/func-imported"),
   // },
-  accessControlAllowOrigin: "*",
-  accessControlAllowMethods: "GET, POST, PUT, OPTIONS, DELETE, PATCH, HEAD",
-  accessControlAllowHeaders: "Origin, X-Requested-With, Content-Type, Accept",
-  accessControlAllowCredentials: "true",
-  open: false,
+  accessControlAllowOrigin: '*',
+  accessControlAllowMethods: 'GET, POST, PUT, OPTIONS, DELETE, PATCH, HEAD',
+  accessControlAllowHeaders: 'Origin, X-Requested-With, Content-Type, Accept, authorization',
+  accessControlAllowCredentials: 'true',
+  open: false
 });
