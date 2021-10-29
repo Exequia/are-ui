@@ -3,10 +3,10 @@
     <mat-card *ngIf="bet" class="cursor-pointer zoom mb-3" (click)="selectBet(bet)">
       <mat-card-header>
         <mat-card-title>
-          <mat-icon *ngIf="bet.type.icon" class="me-2">
-            <span class="material-icons-round"> {{ bet.type.icon }} </span>
+          <mat-icon *ngIf="bet.profile?.icon" class="me-2">
+            <span class="material-icons-round"> {{ bet.profile?.icon }} </span>
           </mat-icon>
-          {{ 'bets.type.' + bet.type.id + '.title' | translate }}
+          {{ 'bets.profile.' + bet.profile?.id + '.title' | translate }}
         </mat-card-title>
         <mat-card-subtitle>{{ bet.config?.name }}</mat-card-subtitle>
       </mat-card-header>

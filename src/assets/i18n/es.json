@@ -18,6 +18,12 @@
     "bets": "Apuestas",
     "games": "Juegos"
   },
+  "home": {
+    "bets": {
+      "title": "Apuestas",
+      "subtitle": "Crea y/o participa en apuestas. Consulta resultados y si has tenido suerte... restregaselo a otros por la cara"
+    }
+  },
   "login": {
     "title": "Identificación",
     "subtitle": "Introduzca las credenciales",
@@ -54,7 +60,7 @@
         "see": "Ver resultados"
       }
     },
-    "type": {
+    "profile": {
       "pregnancy": {
         "title": "Embarazo",
         "subtitle": "Configuración de fecha, hora, sexo, nombre, etc...",

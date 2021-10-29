@@ -1,13 +1,13 @@
-<ng-container *ngFor="let type of types | async">
-  <mat-card *ngIf="type" class="cursor-pointer mb-3" (click)="selectType(type)" [ngClass]="{ disabled: type.disabled, zoom: !type.disabled }">
+<ng-container *ngFor="let profile of profiles | async">
+  <mat-card *ngIf="profile" class="cursor-pointer mb-3" (click)="selectProfile(profile)" [ngClass]="{ disabled: profile.disabled, zoom: !profile.disabled }">
     <mat-card-header>
       <mat-card-title>
-        <mat-icon *ngIf="type.icon" class="me-2">
-          <span class="material-icons-round"> {{ type.icon }} </span>
+        <mat-icon *ngIf="profile.icon" class="me-2">
+          <span class="material-icons-round"> {{ profile.icon }} </span>
         </mat-icon>
-        {{ 'bets.type.' + type.id + '.title' | translate }}
+        {{ 'bets.profile.' + profile.id + '.title' | translate }}
       </mat-card-title>
-      <mat-card-subtitle>{{ 'bets.type.' + type.id + '.subtitle' | translate }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ 'bets.profile.' + profile.id + '.subtitle' | translate }}</mat-card-subtitle>
     </mat-card-header>
   </mat-card>
 </ng-container>

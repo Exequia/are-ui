@@ -14,7 +14,7 @@
 }
 
 .container {
-  margin-top: $med-relative-size;
+  margin: $med-relative-size auto;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

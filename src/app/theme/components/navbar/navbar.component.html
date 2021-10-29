@@ -9,13 +9,13 @@
   </span>
   <span class="spacer"></span>
   <ng-container *ngIf="user | async; else loggedOut">
-    <span>
+    <!-- <span>
       <button mat-icon-button aria-label="Settings icon" routerLink="/users" routerLinkActive="active">
         <mat-icon>settings</mat-icon>
       </button>
-    </span>
+    </span> -->
     <span>
-      <button mat-icon-button aria-label="lLgout icon" (click)="doLogout()">
+      <button mat-icon-button aria-label="Logout icon" (click)="doLogout()">
         <mat-icon>logout</mat-icon>
       </button>
     </span>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { BetType } from 'app/bets/models/betType';
+import { Bet } from 'app/bets/models/bet';
+import { BetsFacadeService } from 'app/bets/services/bets-facade.service';
 import { Observable } from 'rxjs';
-import * as fromRoot from 'store';
 
 @Component({
   selector: 'are-bets-creation',
@@ -10,9 +9,9 @@ import * as fromRoot from 'store';
   styleUrls: ['./bets-creation.component.scss']
 })
 export class BetsCreationComponent implements OnInit {
-  type: Observable<BetType | undefined> = this.store.select(fromRoot.getSelectedType);
+  profile: Observable<Bet | undefined> = this.betsFacade.getSelectedProfile();
 
-  constructor(private store: Store<fromRoot.RootState>) {}
+  constructor(private betsFacade: BetsFacadeService) {}
 
   ngOnInit(): void {}
 }

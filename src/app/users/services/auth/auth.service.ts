@@ -1,16 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
-import { Credentials } from 'app/users/models/credentials';
 import { AuthResponse } from 'app/users/models/auth';
+import { Credentials } from 'app/users/models/credentials';
 import { User } from 'app/users/models/user';
 import { environment } from 'environments/environment';
-import * as jwtDecode from 'jwt-decode';
-import { EMPTY, from, Observable, throwError } from 'rxjs';
-import { catchError, delay, map, retry, take } from 'rxjs/operators';
-import * as fromRoot from 'store';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { UserUtils } from '../utils/userUtils.service';
 // import { errorMessageShowtime } from 'store/effects/ui/show-error';
 
@@ -27,7 +22,7 @@ export class AuthService {
 
   public createUser(user: User): Observable<AuthResponse> {
     const createUserRequest = this.userUtils.castUserToRequest(user);
-    const url = `http://localhost:3001/api/create/`;
+    const url = `${environment.apiBaseURL}create/`;
     return this.http.post<AuthResponse>(url, createUserRequest).pipe(retry(3), catchError(this.handleError));
   }
 

@@ -1,8 +1,14 @@
 import { BetConfig } from './betConfig';
-import { BetType } from './betType';
+import { BetProfile } from './betProfile';
 
 export interface Bet {
-  type: BetType;
+  profile: BetProfile | undefined;
   config: BetConfig;
   results?: any;
+}
+
+export interface BetResponse {
+  profileId: string;
+  config: BetConfig;
+  model: any;
 }
