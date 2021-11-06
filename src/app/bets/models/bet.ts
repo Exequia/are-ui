@@ -7,6 +7,11 @@ export interface Bet {
   results?: any;
 }
 
+export interface BetRequest {
+  betId: string;
+  model: any;
+}
+
 export interface BetResponse {
   profileId: string;
   config: BetConfig;

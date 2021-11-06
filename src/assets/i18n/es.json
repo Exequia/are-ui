@@ -2,6 +2,7 @@
   "commons": {
     "accept": "Aceptar",
     "cancel": "Cancelar",
+    "reset": "Borrar",
     "email": "Email",
     "password": "Contraseña",
     "clear": "Borrar",
@@ -67,11 +68,11 @@
         "fields": {
           "name": {
             "label": "Nombre",
-            "placeholder": "King Kong"
+            "placeholder": "Mini Mike"
           },
           "sex": {
             "label": "Sexo",
-            "placeholder": "King Kong",
+            "placeholder": "Cuanto más, mejor",
             "description": "Selectionar una de las opciones",
             "options": {
               "male": "Hombre",

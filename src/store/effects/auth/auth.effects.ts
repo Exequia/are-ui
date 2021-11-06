@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AuthResponse } from 'app/users/models/auth';
-import { Credentials } from 'app/users/models/credentials';
 import { User } from 'app/users/models/user';
 import { AuthService } from 'app/users/services/auth/auth.service';
 import { StorageService } from 'app/users/services/storage/storage.service';
@@ -15,11 +14,11 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromRoot.doLogin),
-      exhaustMap((credentials: Credentials) => {
-        return this.auth.login(credentials).pipe(
+      exhaustMap(payload => {
+        return this.auth.login(payload.credentials).pipe(
           map((authResponse: AuthResponse) => {
             this.store.dispatch(fromRoot.doLoginSuccess({ user: authResponse.user }));
-            this.storageService.setCredentials(credentials, authResponse);
+            this.storageService.setCredentials(payload.credentials, authResponse);
             return fromRoot.Navigate({ path: ['/'] });
           }),
           catchError(error => of(fromRoot.doLoginFail(error.message)))

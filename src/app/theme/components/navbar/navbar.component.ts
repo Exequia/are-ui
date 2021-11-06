@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AppData, User } from 'app/users/models/user';
 import { Observable } from 'rxjs';
 import * as fromRoot from 'store';
 import { toggleSidenav } from 'store/actions';
@@ -11,7 +10,7 @@ import { toggleSidenav } from 'store/actions';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public user: Observable<AppData | undefined> = this.store.pipe(select(fromRoot.getUser));
+  public user: Observable<any | undefined> = this.store.pipe(select(fromRoot.getUser));
   constructor(private store: Store<fromRoot.RootState>) {}
 
   ngOnInit(): void {}

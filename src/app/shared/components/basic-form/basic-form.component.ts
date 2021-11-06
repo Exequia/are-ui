@@ -14,9 +14,11 @@ export class BasicFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submit() {
-    if (this.formlyData?.form.valid) {
-      alert(JSON.stringify(this.formlyData?.model));
-    }
+  reset() {
+    // if (this.formlyData && !this.formlyData?.options) {
+    //   this.formlyData?.options = {} as FormlyFormOptions;
+    // }
+    // this.formlyData.options.resetModel();
+    this.formlyData?.form?.reset();
   }
 }

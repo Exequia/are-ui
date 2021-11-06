@@ -8,7 +8,7 @@ mockServer({
   title: 'ARE UI',
   version: 1,
   // urlBase: "http://localhost:3001",
-  urlPath: '/api',
+  urlPath: '',
   port: 3001,
   // jvmOptions: "-Dmockserver.enableCORSForAllResponses=true",
   // uiPath: "/",

@@ -81,6 +81,9 @@ formly-group {
   &-pointer {
     cursor: pointer;
   }
+  &-not-allowed {
+    cursor: not-allowed;
+  }
 }
 
 .zoom {

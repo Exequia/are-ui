@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { Credentials } from 'app/users/models/credentials';
 import { AppData, PersonalData, Sex, User } from 'app/users/models/user';
 import { isNil } from 'lodash';
-import { Observable, of } from 'rxjs';
 import * as fromRoot from 'store';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class UserUtils {
   }
 
   login(credentials: Credentials) {
-    this.store.dispatch(fromRoot.doLogin(credentials));
+    this.store.dispatch(fromRoot.doLogin({ credentials }));
   }
 
   public getUserForm(user?: User): FormGroup {

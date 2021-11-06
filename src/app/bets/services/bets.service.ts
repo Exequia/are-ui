@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { BetResponse } from '../models/bet';
+import { BetRequest, BetResponse } from '../models/bet';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,11 @@ export class BetsService {
   loadOpenBets(): Observable<BetResponse[]> {
     const url = `${environment.apiBaseURL}bets/opens`;
     return this.http.get<BetResponse[]>(url).pipe(retry(3), catchError(this.handleError));
+  }
+
+  saveBet(betRequest: BetRequest): Observable<BetResponse> {
+    const url = `${environment.apiBaseURL}bets/opens`;
+    return this.http.post<BetResponse>(url, betRequest).pipe(retry(3), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

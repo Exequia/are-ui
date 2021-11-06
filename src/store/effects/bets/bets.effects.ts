@@ -29,17 +29,20 @@ export class BetsEffects {
     { dispatch: false }
   );
 
-  // loadBetsProfiles$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(fromRoot.loadBetsProfiles),
-  //       mergeMap(() =>
-  //         this.betsService.loadBetsProfiles().pipe(
-  //           map(betsProfiles => this.store.dispatch(fromRoot.setBetsProfiles({ betsProfiles: betsProfiles }))),
-  //           catchError(error => EMPTY /*this.store.dispatch(fromRoot.ErrorOnGetOpenBets(error))*/)
-  //         )
-  //       )
-  //     ),
-  //   { dispatch: false }
-  // );
+  saveBet$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.saveBet),
+        mergeMap(payload =>
+          this.betsService.saveBet(payload.betRequest).pipe(
+            map(response => {
+              // this.toast.emit(response)
+              return fromRoot.Navigate({ path: ['/bets'] });
+            }),
+            catchError(error => EMPTY /*this.store.dispatch(fromRoot.ErrorOnGetOpenBets(error))*/)
+          )
+        )
+      ),
+    { dispatch: false }
+  );
 }

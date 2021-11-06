@@ -1,5 +1,4 @@
-<form *ngIf="formlyData" [formGroup]="formlyData.form" (ngSubmit)="submit()">
+<form *ngIf="formlyData" [formGroup]="formlyData.form">
   <formly-form [model]="formlyData!.model" [fields]="formlyData!.fields" [options]="formlyData!.options" [form]="formlyData!.form"></formly-form>
-  <button type="submit" class="btn btn-primary submit-button">Submit</button>
-  <button type="button" class="btn btn-default" (click)="formlyData.form.reset()">Reset</button>
+  <ng-content></ng-content>
 </form>

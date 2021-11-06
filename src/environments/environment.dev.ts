@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseURL: 'http://heroku:3001/api/'
+  apiBaseURL: 'https://are-bk-dev.herokuapp.com/'
 };

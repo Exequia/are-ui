@@ -7,7 +7,7 @@
     "dev:m": "npm-run-all --parallel dev:mock mock",
     "dev:mock": "ng serve --configuration=mock",
     "dev:l": "ng serve --configuration=local",
-    "dev:d": "ng serve --configuration=dev",
+    "dev:d": "ng serve --configuration=development",
     "mock": "node mock-server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
