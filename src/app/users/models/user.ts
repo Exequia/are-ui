@@ -47,3 +47,16 @@ export enum Profile {
   regular,
   guest
 }
+
+export interface UserRequest {
+  alias: string;
+  email: string;
+  password: string;
+  people: PeopleRequest;
+}
+
+export interface PeopleRequest {
+  firstName: string;
+  lastName?: string;
+  surname?: string;
+}

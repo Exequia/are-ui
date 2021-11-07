@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Credentials } from 'app/users/models/credentials';
-import { AppData, PersonalData, Sex, User } from 'app/users/models/user';
+import { AppData, PersonalData, Sex, User, UserRequest } from 'app/users/models/user';
 import { isNil } from 'lodash';
 import * as fromRoot from 'store';
 
@@ -29,11 +29,11 @@ export class UserUtils {
   }
 
   private initUserForm(user: User): FormGroup {
-    const personalDataForm = this.initPersonalDataForm(user.personalData);
-    const appDataForm = this.initAppDataForm(user.appData);
+    const personalData = this.initPersonalDataForm(user.personalData);
+    const appData = this.initAppDataForm(user.appData);
     return new FormGroup({
-      personalDataForm,
-      appDataForm
+      personalData,
+      appData
     });
   }
 
@@ -93,7 +93,16 @@ export class UserUtils {
     };
   }
 
-  public castUserToRequest(user: User) {
-    return user;
+  public castUserToRequest(user: User): UserRequest {
+    return <UserRequest>{
+      alias: user.appData.nickName,
+      email: user.appData.email,
+      password: user.appData.password,
+      people: {
+        firstName: user.personalData.name,
+        surname: user.personalData.surname,
+        lastName: user.personalData.lastName
+      }
+    };
   }
 }

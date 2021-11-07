@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AuthResponse } from 'app/users/models/auth';
-import { User } from 'app/users/models/user';
 import { AuthService } from 'app/users/services/auth/auth.service';
 import { StorageService } from 'app/users/services/storage/storage.service';
 import { of } from 'rxjs';
@@ -40,8 +39,8 @@ export class AuthEffects {
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromRoot.doCreateUser),
-      exhaustMap((user: User) => {
-        return this.auth.createUser(user).pipe(
+      exhaustMap(payload => {
+        return this.auth.createUser(payload.user).pipe(
           map((authResponse: AuthResponse) => {
             this.store.dispatch(fromRoot.doCreateUserSuccess({ user: authResponse.user }));
             this.storageService.setUserCredentials(authResponse);

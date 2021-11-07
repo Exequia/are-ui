@@ -25,7 +25,7 @@ export class SingUpComponent implements OnInit {
   submit() {
     this.userForm.updateValueAndValidity();
     if (this.userForm?.valid) {
-      this.store.dispatch(fromRoot.doCreateUser(this.userForm.value));
+      this.store.dispatch(fromRoot.doCreateUser({ user: this.userForm.value }));
     }
   }
 }

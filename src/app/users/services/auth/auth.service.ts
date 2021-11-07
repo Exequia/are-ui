@@ -22,7 +22,7 @@ export class AuthService {
 
   public createUser(user: User): Observable<AuthResponse> {
     const createUserRequest = this.userUtils.castUserToRequest(user);
-    const url = `${environment.apiBaseURL}create/`;
+    const url = `${environment.apiBaseURL}users/`;
     return this.http.post<AuthResponse>(url, createUserRequest).pipe(retry(3), catchError(this.handleError));
   }
 

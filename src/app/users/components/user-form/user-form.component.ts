@@ -24,18 +24,18 @@ export class UserFormComponent implements OnInit {
       this.userForm = this.userUtils.getUserForm();
     }
 
-    this.personalDataForm?.statusChanges?.subscribe(status => {
+    this.personalData?.statusChanges?.subscribe(status => {
       if (status === 'VALID') {
         this.stepper?.next();
       }
     });
   }
 
-  get personalDataForm() {
-    return <FormGroup>this.userForm?.get('personalDataForm');
+  get personalData() {
+    return <FormGroup>this.userForm?.get('personalData');
   }
 
-  get appDataForm() {
-    return <FormGroup>this.userForm?.get('appDataForm');
+  get appData() {
+    return <FormGroup>this.userForm?.get('appData');
   }
 }
