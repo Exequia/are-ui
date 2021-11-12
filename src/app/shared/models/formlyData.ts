@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 export interface FormlyData {
-  id: string;
+  id: number;
   fields: FormlyFieldConfig[];
   form: FormGroup;
   model: any;

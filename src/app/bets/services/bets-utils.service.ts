@@ -34,18 +34,25 @@ export class BetsUtilsService {
       id: '',
       formlyData,
       name: '',
-      ownerId: user?.nickName,
+      ownerName: user?.nickName,
       startDate: new Date(),
       status: {
         id: 0,
         name: 'active'
+      },
+      model: {
+        id: 0,
+        fields: [],
+        form: new FormGroup({}),
+        model: {},
+        options: {}
       }
     };
   }
 
   getFormlyDataFromProfile(profile: BetProfile | undefined): FormlyData {
     return {
-      id: '',
+      id: 0,
       fields: this.getBetProfileFields(profile!.id),
       form: new FormGroup({}),
       model: {},
@@ -160,7 +167,7 @@ export class BetsUtilsService {
         profile: this.getProfile(betData.profileId),
         config: {
           id: 'fdlkajsdlfjasdlfjalksdjflkjasdklfjakdsjfljasdkjflka',
-          ownerId: 'Fénix',
+          ownerName: 'Fénix',
           startDate: new Date(),
           endDate: new Date(),
           name: 'Embarazo Laura y Miki',
@@ -169,7 +176,7 @@ export class BetsUtilsService {
             name: 'active'
           },
           formlyData: {
-            id: 'test',
+            id: 0,
             model: betData.model,
             fields: this.getBetProfileFields(betData.profileId),
             form: new FormGroup({}),
@@ -183,5 +190,71 @@ export class BetsUtilsService {
 
   getProfile(profileId: string): BetProfile | undefined {
     return this.betsProfiles?.find(profile => profile?.id === profileId);
+  }
+
+  getBetConfigFormly(): FormlyData {
+    return {
+      id: 0,
+      fields: this.getBetConfigFormlyFields(),
+      form: new FormGroup({}),
+      model: {},
+      options: {}
+    };
+  }
+
+  getBetConfigFormlyFields(): FormlyFieldConfig[] {
+    return [
+      {
+        key: 'ownerName',
+        type: 'input',
+        templateOptions: {
+          label: this.translate.instant('bets.creation.fields.ownerName.label'),
+          placeholder: this.translate.instant('bets.creation.fields.ownerName.placeholder'),
+          description: this.translate.instant('bets.creation.fields.ownerName.description'),
+          readonly: true,
+          required: true
+        }
+      },
+      {
+        key: 'name',
+        type: 'input',
+        templateOptions: {
+          label: this.translate.instant('bets.creation.fields.name.label'),
+          placeholder: this.translate.instant('bets.creation.fields.name.placeholder'),
+          description: this.translate.instant('bets.creation.fields.name.description'),
+          max: 50,
+          required: true
+        }
+      },
+      {
+        fieldGroup: [
+          {
+            key: 'startDate',
+            type: 'datepicker',
+            templateOptions: {
+              label: this.translate.instant('bets.creation.fields.startDate.label'),
+              placeholder: this.translate.instant('bets.creation.fields.startDate.placeholder'),
+              description: this.translate.instant('bets.creation.fields.startDate.description'),
+              required: true,
+              datepickerOptions: {
+                min: new Date()
+              }
+            }
+          },
+          {
+            key: 'endDate',
+            type: 'datepicker',
+            templateOptions: {
+              label: this.translate.instant('bets.creation.fields.endDate.label'),
+              placeholder: this.translate.instant('bets.creation.fields.endDate.placeholder'),
+              description: this.translate.instant('bets.creation.fields.endDate.description'),
+              datepickerOptions: {
+                min: new Date()
+              }
+            }
+          }
+        ]
+      }
+    ];
   }
 }

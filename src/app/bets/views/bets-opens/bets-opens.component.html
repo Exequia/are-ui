@@ -21,7 +21,7 @@
           </div>
           <div>
             <div fxLayout="column">
-              <p>{{ 'bets.opens.owner' | translate }}: {{ bet.config?.ownerId }}</p>
+              <p>{{ 'bets.opens.owner' | translate }}: {{ bet.config?.ownerName }}</p>
               <p *ngIf="bet.config?.status">{{ 'bets.opens.status' | translate }}: {{ bet.config?.status?.name || '' }}</p>
             </div>
           </div>

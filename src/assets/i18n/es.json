@@ -109,6 +109,32 @@
     },
     "bet": {
       "validUntil": "Finalizará el"
+    },
+    "creation": {
+      "title": "Configuración nueva apuesta",
+      "subtitle": "Se creará una nueva apuesta con los datos del formulario",
+      "fields": {
+        "ownerName": {
+          "label": "Propietario",
+          "placeholder": "Ludopata",
+          "description": "Será quien gestione la apuesta"
+        },
+        "name": {
+          "label": "Nombre Apuesta",
+          "placeholder": "¿Quién tendrá razón esta vez?",
+          "description": "Nombre descriptivo para identificar"
+        },
+        "startDate": {
+          "label": "Fecha de Inicio",
+          "placeholder": "dd-mm-yyyy",
+          "description": "Fecha para entrar apuestas"
+        },
+        "endDate": {
+          "label": "Fecha final",
+          "placeholder": "dd-mm-yyyy",
+          "description": "Fecha límite para entrar apuestas"
+        }
+      }
     }
   }
 }

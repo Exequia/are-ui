@@ -1,1 +1,20 @@
-<pre>profile: {{ profile | async | json }}</pre>
+<!-- <pre>profile: {{ profile | async | json }}</pre> -->
+<!-- <are-basic-form #areForm [formlyData]="profile?.config?.formlyData"></are-basic-form> -->
+
+<mat-card *ngIf="config">
+  <mat-card-header>
+    <mat-card-title>
+      {{ 'bets.creation.title' | translate }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ 'bets.creation.subtitle' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <are-basic-form [formlyData]="config">
+      <mat-card-actions>
+        <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="config.model.resetModel()"></button>
+        <button mat-raised-button color="primary" class="btn-block" [innerHTML]="'commons.accept' | translate" (click)="submit()" [disabled]="config?.form?.invalid"></button>
+      </mat-card-actions>
+    </are-basic-form>
+  </mat-card-content>
+</mat-card>

@@ -1,12 +1,15 @@
 import { FormlyData } from 'app/shared/models/formlyData';
+import { BetId } from './betProfile';
 import { BetStatus } from './betStatus';
 
 export interface BetConfig {
-  id: string;
   endDate?: Date;
   formlyData: FormlyData;
+  id: string;
+  model: FormlyData;
   name: string;
-  ownerId?: string;
+  ownerName?: string;
+  profileId?: BetId;
   startDate?: Date;
   status?: BetStatus;
 }
