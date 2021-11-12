@@ -18,8 +18,21 @@
     <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched) && email?.errors?.email" [innerHtml]="'commons.errors.email' | translate"></mat-error>
   </mat-form-field>
   <mat-form-field>
+    <mat-label>{{ 'users.confirmEmail' | translate }}</mat-label>
+    <input matInput placeholder="aa@bb.xx" type="ownerName" formControlName="confirmEmail" tabindex="6" [errorStateMatcher]="appDataForm?.errors?.notSameEmail && matcher" />
+    <button mat-button *ngIf="confirmEmail && (confirmEmail?.dirty || confirmEmail?.touched)" matSuffix mat-icon-button (click)="confirmEmail?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint [innerHtml]="'users.emailPattern' | translate"></mat-hint>
+    <mat-error
+      *ngIf="confirmEmail?.invalid && (confirmEmail?.dirty || confirmEmail?.touched) && confirmEmail?.errors?.required"
+      [innerHtml]="'commons.errors.required' | translate"
+    ></mat-error>
+    <mat-error *ngIf="appDataForm?.errors?.notSameEmail" [innerHtml]="'commons.errors.notSame' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <mat-label>{{ 'commons.password' | translate }}</mat-label>
-    <input matInput [placeholder]="'users.passwordPH' | translate" type="password" formControlName="password" tabindex="6" />
+    <input matInput [placeholder]="'users.passwordPH' | translate" type="password" formControlName="password" tabindex="7" />
     <button mat-button *ngIf="password && (password?.dirty || password?.touched)" matSuffix mat-icon-button (click)="password?.reset()">
       <mat-icon>close</mat-icon>
     </button>
@@ -27,7 +40,14 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>{{ 'users.confirmPassword' | translate }}</mat-label>
-    <input matInput type="password" [placeholder]="'users.confirmPasswordPH' | translate" formControlName="confirmPassword" tabindex="7" [errorStateMatcher]="matcher" />
+    <input
+      matInput
+      type="password"
+      [placeholder]="'users.confirmPasswordPH' | translate"
+      formControlName="confirmPassword"
+      tabindex="8"
+      [errorStateMatcher]="appDataForm?.errors?.notSamePassword && matcher"
+    />
     <button mat-button *ngIf="confirmPassword && (confirmPassword?.dirty || confirmPassword?.touched)" matSuffix mat-icon-button (click)="confirmPassword?.reset()">
       <mat-icon>close</mat-icon>
     </button>
@@ -36,9 +56,6 @@
       *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched) && confirmPassword?.errors?.required"
       [innerHtml]="'commons.errors.required' | translate"
     ></mat-error>
-    <mat-error *ngIf="appDataForm?.errors?.notSame" [innerHtml]="'commons.errors.notSame' | translate"></mat-error>
+    <mat-error *ngIf="appDataForm?.errors?.notSamePassword" [innerHtml]="'commons.errors.notSame' | translate"></mat-error>
   </mat-form-field>
 </form>
-<!-- <pre>{{ appDataForm.value | json }}</pre>
-<pre>{{ appDataForm.status | json }}</pre>
-<pre>{{ appDataForm.errors | json }}</pre> -->

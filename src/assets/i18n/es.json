@@ -39,6 +39,7 @@
     "surname": "Primer apellido",
     "lastName": "Segundo apellido",
     "nickName": "Nombre de usuario",
+    "confirmEmail": "Confirmar Email",
     "emailPattern": "El formato del email debe ser aa@bb.cc",
     "passwordPH": "Entre su contraseña",
     "confirmPassword": "Confirmación de contraseña",

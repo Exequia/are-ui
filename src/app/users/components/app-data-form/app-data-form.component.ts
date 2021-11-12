@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MyErrorStateMatcher } from 'app/shared/utils/my-error-state-matcher/my-error-state-matcher';
 import { UserUtils } from 'app/users/services/utils/userUtils.service';
-
 import { isNil } from 'lodash';
 
 @Component({
@@ -28,6 +27,10 @@ export class AppDataFormComponent implements OnInit {
 
   get email() {
     return this.appDataForm?.get('email');
+  }
+
+  get confirmEmail() {
+    return this.appDataForm?.get('confirmEmail');
   }
 
   get nickName() {

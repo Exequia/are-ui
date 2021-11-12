@@ -52,18 +52,25 @@ export class UserUtils {
     return new FormGroup(
       {
         email: new FormControl(appData.email, [Validators.email, Validators.required]),
+        confirmEmail: new FormControl(appData.email, [Validators.email, Validators.required]),
         nickName: new FormControl(appData.nickName, Validators.required),
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('', Validators.required)
       },
-      { validators: this.checkPasswordsValidator }
+      { validators: [this.checkEmailsValidator, this.checkPasswordsValidator] }
     );
+  }
+
+  private checkEmailsValidator(control: AbstractControl): ValidationErrors | null {
+    const email = control.get('email')?.value;
+    const confirmEmail = control.get('confirmEmail')?.value;
+    return isNil(email) || isNil(confirmEmail) || email === confirmEmail ? null : { notSameEmail: true };
   }
 
   private checkPasswordsValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
-    return isNil(password) || isNil(confirmPassword) || password === confirmPassword ? null : { notSame: true };
+    return isNil(password) || isNil(confirmPassword) || password === confirmPassword ? null : { notSamePassword: true };
   }
 
   private initUserModel(): User {
