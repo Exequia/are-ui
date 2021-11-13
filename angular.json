@@ -142,5 +142,6 @@
       }
     }
   },
-  "defaultProject": "are-ui"
+  "defaultProject": "are-ui",
+  "cli": { "cache": { "enabled": true, "path": ".cache", "environment": "all" } }
 }
