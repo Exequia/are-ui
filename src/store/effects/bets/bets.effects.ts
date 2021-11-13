@@ -11,6 +11,31 @@ import * as fromRoot from 'store';
 export class BetsEffects {
   constructor(private actions$: Actions, private store: Store<fromRoot.RootState>, private betsService: BetsService, private betsUtils: BetsUtilsService) {}
 
+  saveBetCreated$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.saveBetCreated),
+        mergeMap(payload =>
+          this.betsService.saveBetCreated(payload.betCreated).pipe(
+            map(() => {
+              const snackBarConfig = {
+                translationPath: 'api.response.saveSuccess',
+                actions: [{ label: 'bets.creation.participate', action: () => this.store.dispatch(fromRoot.Navigate({ path: ['/bets/opens'] })) }]
+              };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              return fromRoot.Navigate({ path: ['/bets'] });
+            }),
+            catchError(error => {
+              const snackBarConfig = { translationPath: `api.errors.${error.message || 'saveFail'}` };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              return EMPTY;
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
+
   loadOpenBets$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -29,12 +54,12 @@ export class BetsEffects {
     { dispatch: false }
   );
 
-  saveBet$ = createEffect(
+  addBet$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRoot.saveBet),
+        ofType(fromRoot.addBet),
         mergeMap(payload =>
-          this.betsService.saveBet(payload.betRequest).pipe(
+          this.betsService.addBet(payload.addBetRequest).pipe(
             map(response => {
               // this.toast.emit(response)
               return fromRoot.Navigate({ path: ['/bets'] });

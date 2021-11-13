@@ -16,6 +16,14 @@
     "backHome": "Imposible! Aquí está el atajo que buscabas al",
     "home": "inicio"
   },
+  "api": {
+    "response": {
+      "saveSuccess": "Los datos se han guardado correctamente"
+    },
+    "errors": {
+      "saveFail": "Algo ha ido mal. Los datos se han guardado correctamente"
+    }
+  },
   "sidebar": {
     "bets": "Apuestas",
     "games": "Juegos"
@@ -64,7 +72,7 @@
       }
     },
     "profile": {
-      "pregnancy": {
+      "1": {
         "title": "Embarazo",
         "subtitle": "Configuración de fecha, hora, sexo, nombre, etc...",
         "fields": {
@@ -101,7 +109,7 @@
           }
         }
       },
-      "match": { "title": "Encuentro", "subtitle": "Configuración de un enfretamiento siemple y sus posibles resultados" }
+      "2": { "title": "Encuentro", "subtitle": "Configuración de un enfretamiento siemple y sus posibles resultados" }
     },
     "opens": {
       "startDate": "Fecha inicio",
@@ -136,7 +144,8 @@
           "placeholder": "dd-mm-yyyy",
           "description": "Fecha límite para entrar apuestas"
         }
-      }
+      },
+      "participate": "Participar"
     }
   }
 }

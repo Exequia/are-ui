@@ -58,7 +58,7 @@ export class UserUtils {
       {
         email: new FormControl(appData.email, [Validators.email, Validators.required]),
         confirmEmail: new FormControl(appData.email, [Validators.email, Validators.required]),
-        nickName: new FormControl(appData.nickName, Validators.required),
+        nickName: new FormControl(appData.alias, Validators.required),
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('', Validators.required)
       },
@@ -99,7 +99,7 @@ export class UserUtils {
 
   private initAppDataModel(): AppData {
     return {
-      nickName: '',
+      alias: '',
       email: '',
       password: ''
     };
@@ -107,7 +107,7 @@ export class UserUtils {
 
   public castUserToRequest(user: User): UserRequest {
     return <UserRequest>{
-      alias: user.appData.nickName,
+      alias: user.appData.alias,
       email: user.appData.email,
       password: user.appData.password,
       people: {
@@ -123,7 +123,6 @@ export class UserUtils {
       map(user => {
         const token = sessionStorage.getItem(TOKEN_KEY);
         const tokenData: any = token && jwtDecode(token);
-        console.log(tokenData);
         return !!tokenData ? <TokenData>{ roles: tokenData.Roles, email: tokenData.sub } : undefined;
         // const userData: any = jwtDecode(user.signInUserSession.idToken.jwtToken);
         // const userName = userData['custom:override_userid'] ? userData['custom:override_userid'] : userData['cognito:username'];

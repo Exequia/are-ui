@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Bet, BetRequest } from 'app/bets/models/bet';
+import { AddBetRequest, Bet, CreateBetRequest } from 'app/bets/models/bet';
 import { BetProfile } from 'app/bets/models/betProfile';
 
 export const setSelectedProfile = createAction('[Bets Component] Set Selected Types', props<{ selectProfile: BetProfile }>());
@@ -16,4 +16,6 @@ export const errorOnLoadOpenBets = createAction('[Bets Component] Error On GetOp
 
 export const setBetsProfiles = createAction('[Bets Component] Set Bets Profiles', props<{ betsProfiles: BetProfile[] }>());
 
-export const saveBet = createAction('[Bets Component] Save Bet', props<{ betRequest: BetRequest }>());
+export const addBet = createAction('[Bets Component] Save Add to Bet', props<{ addBetRequest: AddBetRequest }>());
+
+export const saveBetCreated = createAction('[Bets Component] Save Bet', props<{ betCreated: CreateBetRequest }>());

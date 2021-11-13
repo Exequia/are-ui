@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { BetRequest, BetResponse } from '../models/bet';
+import { AddBetRequest, AddBetResponse, CreateBetRequest } from '../models/bet';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,19 @@ import { BetRequest, BetResponse } from '../models/bet';
 export class BetsService {
   constructor(private http: HttpClient) {}
 
-  loadOpenBets(): Observable<BetResponse[]> {
-    const url = `${environment.apiBaseURL}bets/opens`;
-    return this.http.get<BetResponse[]>(url).pipe(retry(3), catchError(this.handleError));
+  saveBetCreated(betRequest: CreateBetRequest): Observable<CreateBetRequest> {
+    const url = `${environment.apiBaseURL}bets`;
+    return this.http.post<CreateBetRequest>(url, betRequest).pipe(retry(3), catchError(this.handleError));
   }
 
-  saveBet(betRequest: BetRequest): Observable<BetResponse> {
+  loadOpenBets(): Observable<AddBetResponse[]> {
     const url = `${environment.apiBaseURL}bets/opens`;
-    return this.http.post<BetResponse>(url, betRequest).pipe(retry(3), catchError(this.handleError));
+    return this.http.get<AddBetResponse[]>(url).pipe(retry(3), catchError(this.handleError));
+  }
+
+  addBet(betRequest: AddBetRequest): Observable<AddBetResponse> {
+    const url = `${environment.apiBaseURL}bets/add`;
+    return this.http.post<AddBetResponse>(url, betRequest).pipe(retry(3), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

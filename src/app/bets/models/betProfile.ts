@@ -1,10 +1,10 @@
 export interface BetProfile {
-  id: BetId;
+  id: BetProfileId;
   icon?: string;
   disabled?: boolean;
 }
 
-export enum BetId {
-  pregnancy = 'pregnancy',
-  match = 'match'
+export enum BetProfileId {
+  pregnancy = 1,
+  match = 2
 }

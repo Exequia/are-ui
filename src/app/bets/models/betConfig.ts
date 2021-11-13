@@ -1,5 +1,5 @@
 import { FormlyData } from 'app/shared/models/formlyData';
-import { BetId } from './betProfile';
+import { BetProfileId } from './betProfile';
 import { BetStatus } from './betStatus';
 
 export interface BetConfig {
@@ -9,7 +9,7 @@ export interface BetConfig {
   model: FormlyData;
   name: string;
   ownerName?: string;
-  profileId?: BetId;
+  profileId?: BetProfileId;
   startDate?: Date;
   status?: BetStatus;
 }

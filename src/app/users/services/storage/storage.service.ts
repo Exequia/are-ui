@@ -19,8 +19,9 @@ export class StorageService {
     localStorage.removeItem(key);
   }
 
-  private getObject(key: string) {
-    return JSON.parse(localStorage.getItem(key) || '');
+  private getObject(key: string): any {
+    const data = localStorage.getItem(key);
+    return !!data ? JSON.parse(data) : undefined;
   }
 
   private set(key: string, value: any) {

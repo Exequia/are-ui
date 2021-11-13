@@ -1,5 +1,5 @@
 import { Bet } from 'app/bets/models/bet';
-import { BetId, BetProfile } from 'app/bets/models/betProfile';
+import { BetProfile, BetProfileId } from 'app/bets/models/betProfile';
 
 export interface BetsState {
   betsProfiles?: BetProfile[];
@@ -10,7 +10,7 @@ export interface BetsState {
 
 export const initialBetsState: BetsState = {
   betsProfiles: [
-    { id: BetId.pregnancy, icon: 'pregnant_woman' },
-    { id: BetId.match, icon: 'people_alt', disabled: true }
+    { id: BetProfileId.pregnancy, icon: 'pregnant_woman' },
+    { id: BetProfileId.match, icon: 'people_alt', disabled: true }
   ]
 };

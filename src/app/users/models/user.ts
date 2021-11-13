@@ -27,7 +27,7 @@ export enum Sex {
 }
 
 export interface AppData {
-  nickName: string;
+  alias: string;
   email: string;
   password: string;
   status?: Status;

@@ -8,9 +8,9 @@ import { AppData } from 'app/users/models/user';
 import { take } from 'rxjs/operators';
 import * as fromRoot from 'store';
 import { getBetsProfiles } from 'store';
-import { Bet, BetResponse } from '../models/bet';
+import { AddBetResponse, Bet } from '../models/bet';
 import { BetConfig } from '../models/betConfig';
-import { BetId, BetProfile } from '../models/betProfile';
+import { BetProfile, BetProfileId } from '../models/betProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class BetsUtilsService {
       id: '',
       formlyData,
       name: '',
-      ownerName: user?.nickName,
+      ownerName: user?.alias,
       startDate: new Date(),
       status: {
         id: 0,
@@ -60,10 +60,10 @@ export class BetsUtilsService {
     };
   }
 
-  getBetProfileFields(profile: BetId | string): FormlyFieldConfig[] {
+  getBetProfileFields(profile: BetProfileId | string): FormlyFieldConfig[] {
     let fields: FormlyFieldConfig[];
     switch (profile) {
-      case BetId.pregnancy:
+      case BetProfileId.pregnancy:
         fields = this.getPregnancyFields();
         break;
       default:
@@ -161,7 +161,7 @@ export class BetsUtilsService {
     ];
   }
 
-  completeBet(openBetsData: BetResponse[]): Bet[] {
+  completeBet(openBetsData: AddBetResponse[]): Bet[] {
     const result: Bet[] = (openBetsData || []).map(betData => {
       return <Bet>{
         profile: this.getProfile(betData.profileId),
@@ -188,7 +188,7 @@ export class BetsUtilsService {
     return result;
   }
 
-  getProfile(profileId: string): BetProfile | undefined {
+  getProfile(profileId: BetProfileId): BetProfile | undefined {
     return this.betsProfiles?.find(profile => profile?.id === profileId);
   }
 
@@ -203,6 +203,7 @@ export class BetsUtilsService {
   }
 
   getBetConfigFormlyFields(): FormlyFieldConfig[] {
+    const today = new Date();
     return [
       {
         key: 'ownerName',
@@ -231,13 +232,14 @@ export class BetsUtilsService {
           {
             key: 'startDate',
             type: 'datepicker',
+            defaultValue: today,
             templateOptions: {
               label: this.translate.instant('bets.creation.fields.startDate.label'),
               placeholder: this.translate.instant('bets.creation.fields.startDate.placeholder'),
               description: this.translate.instant('bets.creation.fields.startDate.description'),
               required: true,
               datepickerOptions: {
-                min: new Date()
+                min: today
               }
             }
           },
@@ -249,7 +251,7 @@ export class BetsUtilsService {
               placeholder: this.translate.instant('bets.creation.fields.endDate.placeholder'),
               description: this.translate.instant('bets.creation.fields.endDate.description'),
               datepickerOptions: {
-                min: new Date()
+                min: today
               }
             }
           }

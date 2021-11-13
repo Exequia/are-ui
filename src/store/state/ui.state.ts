@@ -2,14 +2,18 @@ import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@ang
 // import { initialNavigation } from 'config/navigation/navigation';
 
 export interface SnackBarConfiguration {
-  message: string;
-  action?: string;
+  translationPath: string;
+  actions?: SnackBarAction[];
   duration?: number;
   icon?: string;
   position?: {
     horizontalPosition: MatSnackBarHorizontalPosition;
     verticalPosition: MatSnackBarVerticalPosition;
   };
+}
+export interface SnackBarAction {
+  label: string;
+  action?(): void;
 }
 
 export interface UiState {
@@ -30,7 +34,7 @@ export const initialUiState: UiState = {
   snackBar: {
     visible: false,
     configuration: {
-      message: ''
+      translationPath: ''
     }
   },
   progressBar: {

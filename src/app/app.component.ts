@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { get } from 'lodash';
 import { Subscription } from 'rxjs';
 import * as fromRoot from 'store';
@@ -18,7 +19,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private snackBarSubscription: Subscription | undefined;
   private snackBarDismissedSubscription: Subscription | undefined;
 
-  constructor(private store: Store<fromRoot.RootState>, private snackBar: MatSnackBar) {}
+  constructor(private store: Store<fromRoot.RootState>, private translate: TranslateService, private snackBar: MatSnackBar) {}
 
   ngAfterViewInit() {
     this.store.select(fromRoot.isSideBarOpen).subscribe((isOpen: boolean | undefined) => {
@@ -37,13 +38,19 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const verticalPosition = get(config, 'position.verticalPosition', 'top');
     const duration = get(config, 'duration', 3000);
     const icon = get(config, 'icon', null);
+    const actionsConfig = get(config, 'actions', null);
+    let actions;
+    if (actionsConfig) {
+      actions = actionsConfig.map(action => ({ ...action, label: this.translate.instant(action.label) }));
+    }
     const snackBarConf = {
       duration,
       horizontalPosition,
       verticalPosition,
       data: {
-        message: config.message,
-        icon
+        icon,
+        message: this.translate.instant(config.translationPath),
+        actions
       }
     };
 

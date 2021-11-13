@@ -1,11 +1,13 @@
-<div
-  [ngClass]="{
-    'wrapper': true,
-    'has-icon': data?.icon
-  }"
->
-  <mat-icon *ngIf="data?.icon">
-    {{ data.icon }}
-  </mat-icon>
-  <span>{{ data?.message }}</span>
+<div class="flex" fxLayout="column" fxLayoutAlign="space-between">
+  <mat-icon *ngIf="data?.icon"> {{ data?.icon }} </mat-icon>
+  <span *ngIf="data?.message">
+    {{ data?.message }}
+  </span>
+  <div class="mat-simple-snackbar-action" *ngIf="data?.actions">
+    <button *ngFor="let action of data?.actions" mat-button="" class="mat-focus-indicator mat-button mat-button-base" matripple>
+      <span (click)="doAction(action)">{{ action.label }}</span>
+      <span matripple class="mat-ripple mat-button-ripple"></span>
+      <span class="mat-button-focus-overlay"></span>
+    </button>
+  </div>
 </div>

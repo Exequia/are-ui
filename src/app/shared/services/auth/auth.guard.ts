@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
           this.store.dispatch(fromRoot.doLogOut());
           this.store.dispatch(fromRoot.saveRedirectOnLogin({ redirect: this.routerUtils.getUrlWithParams(route) }));
           const snackBarConfig: SnackBarConfiguration = {
-            message: this.translate.instant('commons.errors.authGuard')
+            translationPath: 'commons.errors.authGuard'
           };
           this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
           return false;
