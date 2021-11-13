@@ -9,7 +9,8 @@
     "errors": {
       "required": "El campo es obligatorio",
       "email": "El formato introducido no es válido",
-      "notSame": "Los valores no coinciden"
+      "notSame": "Los valores no coinciden",
+      "authGuard": "Necesita estar identificado para acceder"
     },
     "lost": "¿Perdido?",
     "backHome": "Imposible! Aquí está el atajo que buscabas al",

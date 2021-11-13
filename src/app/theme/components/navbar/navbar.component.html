@@ -9,7 +9,7 @@
   </span>
   <span class="spacer"></span>
   <ng-container *ngIf="user | async; let _user; else: loggedOut">
-    <span> {{ _user.alias }} </span>
+    <span> {{ _user.nickName }} </span>
     <!-- <span>
       <button mat-icon-button aria-label="Settings icon" routerLink="/users" routerLinkActive="active">
         <mat-icon>settings</mat-icon>

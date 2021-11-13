@@ -1,0 +1,11 @@
+<div
+  [ngClass]="{
+    'wrapper': true,
+    'has-icon': data?.icon
+  }"
+>
+  <mat-icon *ngIf="data?.icon">
+    {{ data.icon }}
+  </mat-icon>
+  <span>{{ data?.message }}</span>
+</div>

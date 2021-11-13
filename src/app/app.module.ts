@@ -1,27 +1,25 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { SharedModule } from './shared/shared.module';
-
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 /* STORE */
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TranslateModule } from '@ngx-translate/core';
 import { effects, RootState } from 'store';
+import { environment } from '../environments/environment';
 import * as fromReducers from '../store/reducers';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 import { NavbarComponent } from './theme/components/navbar/navbar.component';
 import { SidebarComponent } from './theme/components/sidebar/sidebar.component';
-
-import { TranslateModule } from '@ngx-translate/core';
+import { SnackbarTemplateModule } from './theme/components/snackbar-template/snackbar-template.module';
 import { HomeComponent } from './theme/views/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { PageNotFoundComponent } from './theme/views/page-not-found/page-not-found.component';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 export const reducers: ActionReducerMap<RootState> = {
   auth: fromReducers.authReducer,
@@ -50,7 +48,8 @@ export const reducers: ActionReducerMap<RootState> = {
     SharedModule,
     HttpClientModule,
     TranslateModule,
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    SnackbarTemplateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

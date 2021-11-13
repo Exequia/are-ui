@@ -1,16 +1,31 @@
 import { Injectable } from '@angular/core';
+import { Redirect } from 'app/shared/models/redirect';
 import { AuthResponse } from 'app/users/models/auth';
 import { Credentials } from 'app/users/models/credentials';
 import { environment } from 'environments/environment';
-
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+import { REDIRECT_URL, TOKEN_KEY, USER_KEY } from './storage-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
   constructor() {}
+
+  private get(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  private remove(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  private getObject(key: string) {
+    return JSON.parse(localStorage.getItem(key) || '');
+  }
+
+  private set(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
   getCredentials(): Credentials {
     const emailStorage = sessionStorage.getItem('userEmail');
@@ -53,14 +68,14 @@ export class StorageService {
   //   window.sessionStorage.setItem(TOKEN_KEY, token);
   // }
 
-  getToken(): string | null {
-    return sessionStorage.getItem(TOKEN_KEY);
-  }
-
   // public saveUser(user: any): void {
   //   window.sessionStorage.removeItem(USER_KEY);
   //   window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   // }
+
+  getToken(): string | null {
+    return sessionStorage.getItem(TOKEN_KEY);
+  }
 
   public getUser(): any {
     const user = sessionStorage.getItem(USER_KEY);
@@ -69,5 +84,15 @@ export class StorageService {
     }
 
     return {};
+  }
+
+  public saveRedirectURL(url: Redirect) {
+    this.set(REDIRECT_URL, url);
+  }
+
+  public getRedirectURL() {
+    const redirectURL = this.getObject(REDIRECT_URL);
+    this.remove(REDIRECT_URL);
+    return redirectURL;
   }
 }

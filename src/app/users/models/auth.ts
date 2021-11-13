@@ -5,3 +5,8 @@ export interface AuthResponse {
   tokenType: string;
   user: AppData;
 }
+
+export interface TokenData {
+  roles: string[];
+  email: string;
+}

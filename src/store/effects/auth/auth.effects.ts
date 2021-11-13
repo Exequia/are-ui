@@ -18,7 +18,8 @@ export class AuthEffects {
           map((authResponse: AuthResponse) => {
             this.store.dispatch(fromRoot.doLoginSuccess({ user: authResponse.user }));
             this.storageService.setCredentials(payload.credentials, authResponse);
-            return fromRoot.Navigate({ path: ['/'] });
+            const entryRoute = this.storageService.getRedirectURL();
+            return fromRoot.Navigate(entryRoute || { path: ['/'] });
           }),
           catchError(error => of(fromRoot.doLoginFail(error.message)))
         );
@@ -50,6 +51,15 @@ export class AuthEffects {
         );
       })
     )
+  );
+
+  saveRedirect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.saveRedirectOnLogin),
+        map(action => this.storageService.saveRedirectURL(action.redirect))
+      ),
+    { dispatch: false }
   );
 
   constructor(private actions$: Actions, private store: Store<fromRoot.RootState>, private auth: AuthService, private storageService: StorageService) {}

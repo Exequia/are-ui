@@ -1,4 +1,6 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+import { SnackBarConfiguration } from 'store';
 
-export const TOGGLE_SIDENAV = '[UI Component] Toggle sidenav';
-export const toggleSidenav = createAction(TOGGLE_SIDENAV);
+export const toggleSidenav = createAction('[UI Component] Toggle sidenav');
+export const showSnackBar = createAction('[UI Component] Show Snackbar', props<{ snackBarConfig: SnackBarConfiguration }>());
+export const resetSnackBar = createAction('[Ui] Hide/Reset Snackbar');

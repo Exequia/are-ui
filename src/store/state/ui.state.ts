@@ -1,7 +1,4 @@
-import {
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 // import { initialNavigation } from 'config/navigation/navigation';
 
 export interface SnackBarConfiguration {
@@ -18,7 +15,7 @@ export interface SnackBarConfiguration {
 export interface UiState {
   snackBar: {
     visible: boolean;
-    configuration: SnackBarConfiguration;
+    configuration: SnackBarConfiguration | undefined;
   };
   progressBar: {
     routerLoading: boolean;
@@ -33,15 +30,15 @@ export const initialUiState: UiState = {
   snackBar: {
     visible: false,
     configuration: {
-      message: '',
-    },
+      message: ''
+    }
   },
   progressBar: {
     routerLoading: false,
-    dataLoading: false,
+    dataLoading: false
   },
   // navigation: initialNavigation,
   sideBar: {
-    isOpen: undefined,
-  },
+    isOpen: undefined
+  }
 };

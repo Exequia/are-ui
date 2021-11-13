@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { TokenData } from 'app/users/models/auth';
 import { Credentials } from 'app/users/models/credentials';
 import { AppData, PersonalData, Sex, User, UserRequest } from 'app/users/models/user';
+import jwtDecode from 'jwt-decode';
 import { isNil } from 'lodash';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as fromRoot from 'store';
+import { TOKEN_KEY } from '../storage/storage-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -111,5 +116,25 @@ export class UserUtils {
         lastName: user.personalData.lastName
       }
     };
+  }
+
+  public getTokenUserInfo(): Observable<TokenData | undefined> {
+    return this.store.select(fromRoot.getUser).pipe(
+      map(user => {
+        const token = sessionStorage.getItem(TOKEN_KEY);
+        const tokenData: any = token && jwtDecode(token);
+        console.log(tokenData);
+        return !!tokenData ? <TokenData>{ roles: tokenData.Roles, email: tokenData.sub } : undefined;
+        // const userData: any = jwtDecode(user.signInUserSession.idToken.jwtToken);
+        // const userName = userData['custom:override_userid'] ? userData['custom:override_userid'] : userData['cognito:username'];
+        // const { email, family_name: surname, given_name: name } = user.attributes;
+        // return {
+        //   userName,
+        //   email,
+        //   surname,
+        //   name
+        // };
+      })
+    );
   }
 }
