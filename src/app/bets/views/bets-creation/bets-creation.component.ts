@@ -5,6 +5,7 @@ import { BetsFacadeService } from 'app/bets/services/bets-facade.service';
 import { BetsUtilsService } from 'app/bets/services/bets-utils.service';
 import { FormlyData } from 'app/shared/models/formlyData';
 import { AppData } from 'app/users/models/user';
+import { cloneDeep, get } from 'lodash';
 import { take } from 'rxjs/operators';
 import * as fromRoot from 'store';
 
@@ -17,11 +18,13 @@ export class BetsCreationComponent implements OnInit {
   profile: Bet | undefined;
   config: FormlyData | undefined;
   userData: AppData | undefined;
+  fields: any = {};
 
   constructor(private store: Store<fromRoot.RootState>, private betsFacade: BetsFacadeService, private betsUtils: BetsUtilsService) {}
 
   ngOnInit(): void {
     this.config = this.betsUtils.getBetConfigFormly();
+    this.fields = cloneDeep(get(this.config, 'fields', {}));
     this.store.pipe(select(fromRoot.getUser), take(1)).subscribe(userData => {
       this.userData = userData;
       this.config!.model.ownerName = this.userData?.alias;
@@ -48,9 +51,8 @@ export class BetsCreationComponent implements OnInit {
   getCreateBetRequest(): CreateBetRequest {
     return <CreateBetRequest>{
       name: this.config?.model.name,
+      fields: JSON.stringify(this.fields),
       model: JSON.stringify(this.config?.model || {}),
-      // TODO: ARE- getOwnerId
-      ownerId: 1,
       profileId: this.profile?.profile?.id || 0
     };
   }

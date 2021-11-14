@@ -14,14 +14,20 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(fromRoot.doLogin),
       exhaustMap(payload => {
+        this.store.dispatch(fromRoot.displayLoading({ display: true }));
         return this.auth.login(payload.credentials).pipe(
           map((authResponse: AuthResponse) => {
             this.store.dispatch(fromRoot.doLoginSuccess({ user: authResponse.user }));
             this.storageService.setCredentials(payload.credentials, authResponse);
             const entryRoute = this.storageService.getRedirectURL();
+            this.store.dispatch(fromRoot.displayLoading({ display: false }));
+
             return fromRoot.Navigate(entryRoute || { path: ['/'] });
           }),
-          catchError(error => of(fromRoot.doLoginFail(error.message)))
+          catchError(error => {
+            this.store.dispatch(fromRoot.displayLoading({ display: false }));
+            return of(fromRoot.doLoginFail(error.message));
+          })
         );
       })
     )

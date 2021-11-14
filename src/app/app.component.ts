@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'lodash';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as fromRoot from 'store';
 import { SnackBarConfiguration } from 'store';
 import { SnackBarTemplateComponent } from './theme/components/snackbar-template/snackbar-template.component';
@@ -18,6 +18,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   private snackBarSubscription: Subscription | undefined;
   private snackBarDismissedSubscription: Subscription | undefined;
+  loading: Observable<boolean> = this.store.select(fromRoot.isLoading);
 
   constructor(private store: Store<fromRoot.RootState>, private translate: TranslateService, private snackBar: MatSnackBar) {}
 

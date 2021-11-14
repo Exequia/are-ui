@@ -20,7 +20,7 @@ export interface AddBetResponse {
 
 export interface CreateBetRequest {
   name: string;
+  fields: string;
   model: string;
-  ownerId: number;
   profileId?: BetProfileId;
 }

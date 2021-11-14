@@ -12,7 +12,9 @@ import { FormlyMatSliderModule } from '@ngx-formly/material/slider';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MaterialModule } from '../material/material.module';
+/* MY COMPONENTS*/
 import { BasicFormComponent } from './components/basic-form/basic-form.component';
+import { ButtonComponent } from './components/button/button.component';
 import { FormlyFieldTimeInputComponent } from './components/formly-field-time-input/formly-field-time-input.component';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { AuthGuard } from './services/auth/auth.guard';
@@ -21,7 +23,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-const formlyComponents = [BasicFormComponent, FormlyFieldTimeInputComponent];
+const formlyComponents = [BasicFormComponent, FormlyFieldTimeInputComponent, ButtonComponent];
 const formlyModules = [FormlyMaterialModule, FormlyMatDatepickerModule, FormlyMatSliderModule];
 
 @NgModule({

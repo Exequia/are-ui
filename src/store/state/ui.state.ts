@@ -22,8 +22,7 @@ export interface UiState {
     configuration: SnackBarConfiguration | undefined;
   };
   progressBar: {
-    routerLoading: boolean;
-    dataLoading: boolean;
+    displayLoading: boolean;
   };
   sideBar: {
     isOpen: boolean | undefined;
@@ -38,8 +37,7 @@ export const initialUiState: UiState = {
     }
   },
   progressBar: {
-    routerLoading: false,
-    dataLoading: false
+    displayLoading: false
   },
   // navigation: initialNavigation,
   sideBar: {

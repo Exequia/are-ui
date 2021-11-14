@@ -10,7 +10,8 @@
     <are-basic-form [formlyData]="config">
       <mat-card-actions>
         <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="config.model.resetModel()"></button>
-        <button mat-raised-button color="primary" class="btn-block" [innerHTML]="'commons.accept' | translate" (click)="submit()" [disabled]="config?.form?.invalid"></button>
+        <!-- <button mat-raised-button color="primary" class="btn-block" [innerHTML]=" | translate" (click)="submit()" [disabled]="config?.form?.invalid"></button> -->
+        <are-button [text]="'commons.accept'" [disabled]="config?.form?.invalid" (onClick)="submit()"></are-button>
       </mat-card-actions>
     </are-basic-form>
   </mat-card-content>

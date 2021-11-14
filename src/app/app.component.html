@@ -5,6 +5,8 @@
 
   <mat-sidenav-content>
     <app-navbar></app-navbar>
+    <mat-progress-bar *ngIf="loading | async" mode="indeterminate" color="accent"></mat-progress-bar>
+
     <section class="container">
       <router-outlet></router-outlet>
     </section>

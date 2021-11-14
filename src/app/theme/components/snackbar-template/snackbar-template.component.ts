@@ -3,7 +3,7 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { SnackBarAction } from 'store';
 
 @Component({
-  selector: 'app-snackbar-template',
+  selector: 'are-snackbar-template',
   templateUrl: 'snackbar-template.component.html',
   styleUrls: ['snackbar-template.component.scss']
 })

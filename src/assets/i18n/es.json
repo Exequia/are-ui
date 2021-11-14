@@ -21,6 +21,7 @@
       "saveSuccess": "Los datos se han guardado correctamente"
     },
     "errors": {
+      "general": "Se ha producido un error",
       "saveFail": "Algo ha ido mal. Los datos se han guardado correctamente"
     }
   },

@@ -1,3 +1,14 @@
 span {
   font-size: small;
 }
+
+button {
+  mat-spinner {
+    zoom: 0.2;
+    margin-top: 42px !important;
+    position: absolute;
+  }
+  span {
+    margin-left: 30px;
+  }
+}
