@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Bet } from 'app/bets/models/bet';
+import { AddBetRequest, Bet } from 'app/bets/models/bet';
 import { Observable } from 'rxjs';
 import * as fromRoot from 'store';
 
@@ -18,7 +18,11 @@ export class BetsBetComponent implements OnInit {
 
   submit(bet: Bet) {
     if (bet.config.formlyData.form.valid) {
-      alert(JSON.stringify(bet.config.formlyData.model));
+      const addBetRequest: AddBetRequest = {
+        betId: bet?.config?.id,
+        model: JSON.stringify(bet.config.formlyData.model)
+      };
+      this.store.dispatch(fromRoot.addBet({ addBetRequest }));
     }
   }
 }

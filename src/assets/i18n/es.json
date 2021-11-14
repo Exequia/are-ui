@@ -116,7 +116,7 @@
       "startDate": "Fecha inicio",
       "endDate": "Fecha fin",
       "owner": "Propietario",
-      "status": "Estado"
+      "new": "Nueva"
     },
     "bet": {
       "validUntil": "Finalizará el"

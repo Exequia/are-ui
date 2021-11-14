@@ -6,10 +6,22 @@ export interface Bet {
   config: BetConfig;
   results?: any;
 }
+export interface BetResponse {
+  id: number;
+  name: string;
+  profileId: number;
+  fields: string;
+  model: string;
+  results?: string;
+  statusId?: number;
+  startDate?: Date;
+  endDate?: Date;
+  addedBet?: string;
+}
 
 export interface AddBetRequest {
-  betId: string;
-  model: any;
+  betId: number;
+  model: string;
 }
 
 export interface AddBetResponse {

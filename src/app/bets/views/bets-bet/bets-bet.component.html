@@ -3,10 +3,11 @@
     <mat-card-title>
       {{ bet.config?.name }}
     </mat-card-title>
-    <mat-card-subtitle>{{ 'bets.bet.validUntil' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="bet.config?.endDate">{{ 'bets.bet.validUntil' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
+    <!-- <pre>bet.config?.formlyData: {{ bet.config?.formlyData | json }}</pre> -->
     <are-basic-form #areForm [formlyData]="bet.config?.formlyData">
       <mat-card-actions>
         <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="areForm.reset()"></button>

@@ -2,13 +2,14 @@
   <ng-container *ngFor="let bet of openBets | async">
     <mat-card *ngIf="bet" class="cursor-pointer zoom mb-3" (click)="selectBet(bet)">
       <mat-card-header>
-        <mat-card-title>
+        <mat-card-title> {{ bet.config?.name }} </mat-card-title>
+        <mat-card-subtitle>
           <mat-icon *ngIf="bet.profile?.icon" class="me-2">
             <span class="material-icons-round"> {{ bet.profile?.icon }} </span>
           </mat-icon>
           {{ 'bets.profile.' + bet.profile?.id + '.title' | translate }}
-        </mat-card-title>
-        <mat-card-subtitle>{{ bet.config?.name }}</mat-card-subtitle>
+          <div *ngIf="bet.config?.isNew" class="new">{{ 'bets.opens.new' | translate }}!</div>
+        </mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
@@ -16,13 +17,13 @@
           <div class="me-5">
             <div fxLayout="column">
               <p>{{ 'bets.opens.startDate' | translate }}: {{ bet.config?.startDate | date: 'shortDate' }}</p>
-              <p>{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</p>
+              <p *ngIf="bet.config?.endDate">{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</p>
             </div>
           </div>
           <div>
             <div fxLayout="column">
               <p>{{ 'bets.opens.owner' | translate }}: {{ bet.config?.ownerName }}</p>
-              <p *ngIf="bet.config?.status">{{ 'bets.opens.status' | translate }}: {{ bet.config?.status?.name || '' }}</p>
+              <!-- <p *ngIf="bet.config?.statusId">{{ 'bets.opens.status' | translate }}: {{ 'bets.opens.status.' + bet.config?.statusId + '.title' | translate }}</p> -->
             </div>
           </div>
         </div>

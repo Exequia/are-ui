@@ -24,7 +24,6 @@ export class BetsCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.config = this.betsUtils.getBetConfigFormly();
-    this.fields = cloneDeep(get(this.config, 'fields', {}));
     this.store.pipe(select(fromRoot.getUser), take(1)).subscribe(userData => {
       this.userData = userData;
       this.config!.model.ownerName = this.userData?.alias;
@@ -32,7 +31,10 @@ export class BetsCreationComponent implements OnInit {
     this.betsFacade
       .getSelectedProfile()
       .pipe(take(1))
-      .subscribe(profile => (this.profile = profile));
+      .subscribe(profile => {
+        this.profile = profile;
+        this.fields = cloneDeep(get(profile, 'config.formlyData.fields', {}));
+      });
   }
 
   submit() {

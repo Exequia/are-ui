@@ -23,7 +23,7 @@ export class BetsEffects {
                 actions: [{ label: 'bets.creation.participate', action: () => this.store.dispatch(fromRoot.Navigate({ path: ['/bets/opens'] })) }]
               };
               this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
-              return fromRoot.Navigate({ path: ['/bets'] });
+              return fromRoot.Navigate({ path: ['/bets/opens'] });
             }),
             catchError(error => {
               const snackBarConfig = { translationPath: `api.errors.${error.message || 'saveFail'}` };
@@ -43,11 +43,9 @@ export class BetsEffects {
         mergeMap(() =>
           this.betsService.loadOpenBets().pipe(
             map(openBetsData => {
-              const openBets = this.betsUtils.completeBet(openBetsData);
-              console.log(openBets);
+              const openBets = this.betsUtils.completeBets(openBetsData);
               return this.store.dispatch(fromRoot.setOpenBets({ openBets }));
-            }),
-            catchError(error => EMPTY /*this.store.dispatch(fromRoot.ErrorOnGetOpenBets(error))*/)
+            })
           )
         )
       ),
@@ -60,11 +58,19 @@ export class BetsEffects {
         ofType(fromRoot.addBet),
         mergeMap(payload =>
           this.betsService.addBet(payload.addBetRequest).pipe(
-            map(response => {
-              // this.toast.emit(response)
-              return fromRoot.Navigate({ path: ['/bets'] });
+            map(() => {
+              const snackBarConfig = {
+                translationPath: 'api.response.saveSuccess'
+              };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              this.store.dispatch(fromRoot.Navigate({ path: ['/bets/opens'] }));
+              return EMPTY;
             }),
-            catchError(error => EMPTY /*this.store.dispatch(fromRoot.ErrorOnGetOpenBets(error))*/)
+            catchError(error => {
+              const snackBarConfig = { translationPath: `api.errors.${error.message || 'saveFail'}` };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              return EMPTY;
+            })
           )
         )
       ),

@@ -5,10 +5,11 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormlyData } from 'app/shared/models/formlyData';
 import { AppData } from 'app/users/models/user';
+import { isEqual } from 'lodash';
 import { take } from 'rxjs/operators';
 import * as fromRoot from 'store';
 import { getBetsProfiles } from 'store';
-import { AddBetResponse, Bet } from '../models/bet';
+import { Bet, BetResponse } from '../models/bet';
 import { BetConfig } from '../models/betConfig';
 import { BetProfile, BetProfileId } from '../models/betProfile';
 
@@ -31,15 +32,12 @@ export class BetsUtilsService {
 
   getDefaultFormlyConfig(formlyData: FormlyData, user: AppData | undefined): BetConfig {
     return {
-      id: '',
+      id: 0,
       formlyData,
       name: '',
       ownerName: user?.alias,
       startDate: new Date(),
-      status: {
-        id: 0,
-        name: 'active'
-      },
+      statusId: 0,
       model: {
         id: 0,
         fields: [],
@@ -79,8 +77,8 @@ export class BetsUtilsService {
         key: 'name',
         type: 'input',
         templateOptions: {
-          label: this.translate.instant('bets.profile.pregnancy.fields.name.label'),
-          placeholder: this.translate.instant('bets.profile.pregnancy.fields.name.placeholder'),
+          label: this.translate.instant('bets.profile.1.fields.name.label'),
+          placeholder: this.translate.instant('bets.profile.1.fields.name.placeholder'),
           required: true
         }
       },
@@ -88,12 +86,12 @@ export class BetsUtilsService {
         key: 'sex',
         type: 'select',
         templateOptions: {
-          label: this.translate.instant('bets.profile.pregnancy.fields.sex.label'),
-          placeholder: this.translate.instant('bets.profile.pregnancy.fields.sex.placeholder'),
-          description: this.translate.instant('bets.profile.pregnancy.fields.sex.description'),
+          label: this.translate.instant('bets.profile.1.fields.sex.label'),
+          placeholder: this.translate.instant('bets.profile.1.fields.sex.placeholder'),
+          description: this.translate.instant('bets.profile.1.fields.sex.description'),
           options: [
-            { label: this.translate.instant('bets.profile.pregnancy.fields.sex.options.male'), value: 'male' },
-            { label: this.translate.instant('bets.profile.pregnancy.fields.sex.options.female'), value: 'female' }
+            { label: this.translate.instant('bets.profile.1.fields.sex.options.male'), value: 'male' },
+            { label: this.translate.instant('bets.profile.1.fields.sex.options.female'), value: 'female' }
           ],
           required: true
         }
@@ -104,9 +102,9 @@ export class BetsUtilsService {
             key: 'birthDate',
             type: 'datepicker',
             templateOptions: {
-              label: this.translate.instant('bets.profile.pregnancy.fields.birthDate.label'),
-              placeholder: this.translate.instant('bets.profile.pregnancy.fields.birthDate.placeholder'),
-              description: this.translate.instant('bets.profile.pregnancy.fields.birthDate.description'),
+              label: this.translate.instant('bets.profile.1.fields.birthDate.label'),
+              placeholder: this.translate.instant('bets.profile.1.fields.birthDate.placeholder'),
+              description: this.translate.instant('bets.profile.1.fields.birthDate.description'),
               required: true,
               datepickerOptions: {
                 min: new Date()
@@ -118,9 +116,9 @@ export class BetsUtilsService {
             type: 'time',
             defaultValue: '0',
             templateOptions: {
-              label: this.translate.instant('bets.profile.pregnancy.fields.birthTime.label'),
-              placeholder: this.translate.instant('bets.profile.pregnancy.fields.birthTime.placeholder'),
-              description: this.translate.instant('bets.profile.pregnancy.fields.birthTime.description'),
+              label: this.translate.instant('bets.profile.1.fields.birthTime.label'),
+              placeholder: this.translate.instant('bets.profile.1.fields.birthTime.placeholder'),
+              description: this.translate.instant('bets.profile.1.fields.birthTime.description'),
               required: true
             }
           }
@@ -131,15 +129,15 @@ export class BetsUtilsService {
         type: 'slider',
         defaultValue: 0,
         templateOptions: {
-          label: this.translate.instant('bets.profile.pregnancy.fields.weight.label'),
-          description: this.translate.instant('bets.profile.pregnancy.fields.weight.description'),
+          label: this.translate.instant('bets.profile.1.fields.weight.label'),
+          description: this.translate.instant('bets.profile.1.fields.weight.description'),
           thumbLabel: true,
           step: 0.1,
           max: 10,
           required: true
         },
         expressionProperties: {
-          'templateOptions.label': model => `${this.translate.instant('bets.profile.pregnancy.fields.weight.label')}: ${model?.weight}`
+          'templateOptions.label': model => `${this.translate.instant('bets.profile.1.fields.weight.label')}: ${model?.weight}`
         }
       },
       {
@@ -147,45 +145,61 @@ export class BetsUtilsService {
         type: 'slider',
         defaultValue: 0,
         templateOptions: {
-          label: this.translate.instant('bets.profile.pregnancy.fields.height.label'),
-          description: this.translate.instant('bets.profile.pregnancy.fields.height.description'),
+          label: this.translate.instant('bets.profile.1.fields.height.label'),
+          description: this.translate.instant('bets.profile.1.fields.height.description'),
           thumbLabel: true,
           step: 1,
           max: 100,
           required: true
         },
         expressionProperties: {
-          'templateOptions.label': model => `${this.translate.instant('bets.profile.pregnancy.fields.height.label')}: ${model?.height}`
+          'templateOptions.label': model => `${this.translate.instant('bets.profile.1.fields.height.label')}: ${model?.height}`
         }
       }
     ];
   }
 
-  completeBet(openBetsData: AddBetResponse[]): Bet[] {
+  completeBets(openBetsData: BetResponse[]): Bet[] {
     const result: Bet[] = (openBetsData || []).map(betData => {
+      const model = JSON.parse(betData.model || '{}');
+      const fields = JSON.parse(betData.fields || '{}');
+      const betModel = !!betData.addedBet ? JSON.parse(betData.addedBet.replace(/'/g, '"')) : {};
       return <Bet>{
         profile: this.getProfile(betData.profileId),
         config: {
-          id: 'fdlkajsdlfjasdlfjalksdjflkjasdklfjakdsjfljasdkjflka',
-          ownerName: 'Fénix',
-          startDate: new Date(),
-          endDate: new Date(),
-          name: 'Embarazo Laura y Miki',
-          status: {
-            id: 1,
-            name: 'active'
-          },
+          id: betData.id,
+          startDate: new Date(model.startDate),
+          endDate: model.endDate,
+          name: model.name,
+          ownerName: model.ownerName,
+          statusId: betData.statusId,
+          isNew: isEqual(betModel, {}),
           formlyData: {
             id: 0,
-            model: betData.model,
-            fields: this.getBetProfileFields(betData.profileId),
+            model: betModel,
+            fields,
             form: new FormGroup({}),
             options: {}
           }
         }
       };
     });
-    return result;
+    const sort = result.sort(this.compareDate);
+    return sort;
+  }
+
+  private sortByStartDate(a: Bet, b: Bet) {
+    return b.config.startDate!.getTime() > a.config.startDate!.getTime() ? 1 : 0;
+  }
+
+  private compareDate(a: Bet, b: Bet): number {
+    let d1 = a.config.startDate!;
+    let d2 = b.config.startDate!;
+
+    let same = d1.getTime() === d2.getTime();
+    if (same) return 0;
+    if (d1 > d2) return -1;
+    return 1;
   }
 
   getProfile(profileId: BetProfileId): BetProfile | undefined {
