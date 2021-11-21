@@ -16,8 +16,8 @@
         <div fxLayout="row" fxLayoutAlign="space-between">
           <div class="me-5">
             <div fxLayout="column">
-              <p>{{ 'bets.opens.startDate' | translate }}: {{ bet.config?.startDate | date: 'shortDate' }}</p>
-              <p *ngIf="bet.config?.endDate">{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: 'shortDate' }}</p>
+              <p>{{ 'bets.opens.startDate' | translate }}: {{ bet.config?.startDate | date: getFormatDate() }}</p>
+              <p *ngIf="bet.config?.endDate">{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: getFormatDate() }}</p>
             </div>
           </div>
           <div>
@@ -28,6 +28,10 @@
           </div>
         </div>
       </mat-card-content>
+      <mat-card-actions>
+        <!-- <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="areForm.reset()"></button> -->
+        <button *ngIf="bet?.config?.isMyBet" mat-raised-button color="primary" class="btn-block" (click)="closeBet(bet)">{{ 'bets.opens.close' | translate }}</button>
+      </mat-card-actions>
     </mat-card>
   </ng-container>
 </ng-container>

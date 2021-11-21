@@ -12,4 +12,5 @@ export interface BetConfig {
   startDate?: Date;
   statusId?: number;
   isNew?: boolean;
+  isMyBet?: boolean;
 }

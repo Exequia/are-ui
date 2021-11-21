@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CLOSE } from 'app/shared/global.constants';
+import { BetsBetComponent } from './views/bets-bet/bets-bet.component';
+import { BetsCreationComponent } from './views/bets-creation/bets-creation.component';
 import { BetsDashboardComponent } from './views/bets-dashboard/bets-dashboard.component';
 import { BetsNewComponent } from './views/bets-new/bets-new.component';
 import { BetsOpensComponent } from './views/bets-opens/bets-opens.component';
 import { BetsResultsComponent } from './views/bets-results/bets-results.component';
-import { BetsCreationComponent } from './views/bets-creation/bets-creation.component';
-import { BetsBetComponent } from './views/bets-bet/bets-bet.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'bet',
     component: BetsBetComponent
+  },
+  {
+    path: 'close',
+    component: BetsBetComponent,
+    data: { action: CLOSE }
   }
 ];
 

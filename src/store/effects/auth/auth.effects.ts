@@ -10,6 +10,18 @@ import * as fromRoot from 'store';
 
 @Injectable()
 export class AuthEffects {
+  checkSession$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.saveRedirectOnLogin),
+        map(() => {
+          const authResponse: AuthResponse | undefined = this.storageService.checkSession();
+          authResponse && this.store.dispatch(fromRoot.doLoginSuccess({ user: authResponse.user }));
+        })
+      ),
+    { dispatch: false }
+  );
+
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromRoot.doLogin),

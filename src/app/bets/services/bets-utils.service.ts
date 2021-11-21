@@ -180,7 +180,8 @@ export class BetsUtilsService {
             fields,
             form: new FormGroup({}),
             options: {}
-          }
+          },
+          isMyBet: 0 === betData.ownerId
         }
       };
     });

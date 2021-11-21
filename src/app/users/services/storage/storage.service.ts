@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Redirect } from 'app/shared/models/redirect';
 import { AuthResponse } from 'app/users/models/auth';
 import { Credentials } from 'app/users/models/credentials';
+import { AppData } from 'app/users/models/user';
 import { environment } from 'environments/environment';
 import { REDIRECT_URL, TOKEN_KEY, USER_KEY } from './storage-constants';
 
@@ -95,5 +96,15 @@ export class StorageService {
     const redirectURL = this.getObject(REDIRECT_URL);
     this.remove(REDIRECT_URL);
     return redirectURL;
+  }
+
+  checkSession(): AuthResponse | undefined {
+    let authResponse: AuthResponse | undefined = undefined;
+    const user: AppData = this.getObject(USER_KEY);
+    const accessToken = this.getObject(TOKEN_KEY);
+    if (!!user && !!accessToken) {
+      authResponse = { user, accessToken };
+    }
+    return authResponse;
   }
 }

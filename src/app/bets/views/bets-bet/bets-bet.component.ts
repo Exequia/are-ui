@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AddBetRequest, Bet } from 'app/bets/models/bet';
+import { Bet, BetDataRequest } from 'app/bets/models/bet';
+import { CLOSE, DATE_FORMAT } from 'app/shared/global.constants';
 import { Observable } from 'rxjs';
 import * as fromRoot from 'store';
 
@@ -11,18 +13,25 @@ import * as fromRoot from 'store';
 })
 export class BetsBetComponent implements OnInit {
   bet: Observable<Bet | undefined> = this.store.select(fromRoot.getSelectedBet);
+  action: string = '';
 
-  constructor(private store: Store<fromRoot.RootState>) {}
+  constructor(private store: Store<fromRoot.RootState>, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.data.subscribe(values => (this.action = values?.action)).unsubscribe();
+  }
 
   submit(bet: Bet) {
     if (bet.config.formlyData.form.valid) {
-      const addBetRequest: AddBetRequest = {
+      const betDataRequest: BetDataRequest = {
         betId: bet?.config?.id,
         model: JSON.stringify(bet.config.formlyData.model)
       };
-      this.store.dispatch(fromRoot.addBet({ addBetRequest }));
+      this.action === CLOSE ? this.store.dispatch(fromRoot.closeBet({ betDataRequest })) : this.store.dispatch(fromRoot.addBet({ betDataRequest }));
     }
+  }
+
+  getFormatDate(): string {
+    return DATE_FORMAT;
   }
 }

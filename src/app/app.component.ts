@@ -23,6 +23,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   constructor(private store: Store<fromRoot.RootState>, private translate: TranslateService, private snackBar: MatSnackBar) {}
 
   ngAfterViewInit() {
+    this.store.dispatch(fromRoot.checkSession());
+
     this.store.select(fromRoot.isSideBarOpen).subscribe((isOpen: boolean | undefined) => {
       isOpen !== undefined && this.sidenav?.toggle();
     });

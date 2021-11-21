@@ -1,6 +1,7 @@
 button {
   mat-spinner {
     zoom: 0.2;
+    -moz-transform: scale(0.2);
     margin-top: 42px !important;
     position: absolute;
     animation-name: SpinnerInSpinner;

@@ -22,7 +22,13 @@
     },
     "errors": {
       "general": "Se ha producido un error",
-      "saveFail": "Algo ha ido mal. Los datos se han guardado correctamente"
+      "saveFail": "Algo ha ido mal. Los datos se han guardado correctamente",
+      "badCredentials": "Los datos de identificación no son correctos",
+      "emailNotNull": "El campo Email no puede estar vacío",
+      "emailExists": "El email indicado ya existe en la base de datos y debe ser único",
+      "aliasNotNull": "El campo Alias no puede estar vacío",
+      "aliasNotEmpty": "El campo Alias no puede estar vacío",
+      "betIdNotExists": "La apuesta indicada no se ha encontrado"
     }
   },
   "sidebar": {
@@ -116,10 +122,12 @@
       "startDate": "Fecha inicio",
       "endDate": "Fecha fin",
       "owner": "Propietario",
-      "new": "Nueva"
+      "new": "Nueva",
+      "close": "Cerrar Apuesta"
     },
     "bet": {
-      "validUntil": "Finalizará el"
+      "validUntil": "Finalizará el",
+      "close": "Grabar resultados y cerrar"
     },
     "creation": {
       "title": "Configuración nueva apuesta",

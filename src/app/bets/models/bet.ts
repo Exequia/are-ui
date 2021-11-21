@@ -17,9 +17,10 @@ export interface BetResponse {
   startDate?: Date;
   endDate?: Date;
   addedBet?: string;
+  ownerId?: number;
 }
 
-export interface AddBetRequest {
+export interface BetDataRequest {
   betId: number;
   model: string;
 }

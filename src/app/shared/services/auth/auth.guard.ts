@@ -21,7 +21,8 @@ export class AuthGuard implements CanActivate {
     return this.userUtils.getTokenUserInfo().pipe(
       withLatestFrom(this.store.select(fromRoot.getUser)),
       map(([tokenData, userData]: [TokenData | undefined, AppData | undefined]) => {
-        if (!!tokenData && !!userData && tokenData?.email === userData?.email) {
+        // if (!!tokenData && !!userData && tokenData?.email === userData?.email) {
+        if ((!!tokenData && !!userData && tokenData?.email === userData?.email) || (!userData && !!tokenData)) {
           return true;
         } else {
           this.store.dispatch(fromRoot.doLogOut());

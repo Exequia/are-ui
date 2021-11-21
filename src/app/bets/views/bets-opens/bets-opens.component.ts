@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Bet } from 'app/bets/models/bet';
+import { DATE_FORMAT } from 'app/shared/global.constants';
 import { Observable } from 'rxjs';
 import * as fromRoot from 'store';
 
@@ -21,5 +22,16 @@ export class BetsOpensComponent implements OnInit {
   selectBet(selectedBet: Bet) {
     this.store.dispatch(fromRoot.setSelectedBet({ selectedBet }));
     this.store.dispatch(fromRoot.Navigate({ path: ['/bets/bet'] }));
+  }
+
+  closeBet(selectedBet: Bet) {
+    selectedBet.config.formlyData.model = {};
+    selectedBet.config.endDate = new Date();
+    this.store.dispatch(fromRoot.setSelectedBet({ selectedBet }));
+    this.store.dispatch(fromRoot.Navigate({ path: ['/bets/close'] }));
+  }
+
+  getFormatDate(): string {
+    return DATE_FORMAT;
   }
 }

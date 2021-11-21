@@ -57,7 +57,32 @@ export class BetsEffects {
       this.actions$.pipe(
         ofType(fromRoot.addBet),
         mergeMap(payload =>
-          this.betsService.addBet(payload.addBetRequest).pipe(
+          this.betsService.addBet(payload.betDataRequest).pipe(
+            map(() => {
+              const snackBarConfig = {
+                translationPath: 'api.response.saveSuccess'
+              };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              this.store.dispatch(fromRoot.Navigate({ path: ['/bets/opens'] }));
+              return EMPTY;
+            }),
+            catchError(error => {
+              const snackBarConfig = { translationPath: `api.errors.${error.message || 'saveFail'}` };
+              this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
+              return EMPTY;
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
+
+  closeBet$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.closeBet),
+        mergeMap(payload =>
+          this.betsService.closeBet(payload.betDataRequest).pipe(
             map(() => {
               const snackBarConfig = {
                 translationPath: 'api.response.saveSuccess'
