@@ -1,0 +1,17 @@
+<form class="form" [formGroup]="userForm">
+  <mat-vertical-stepper #stepper>
+    <mat-step>
+      <ng-template matStepLabel>{{ 'users.personalData' | translate }}</ng-template>
+      <ng-template matStepContent>
+        <app-personal-data-form [personalDataForm]="personalData"></app-personal-data-form>
+      </ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>{{ 'users.appData' | translate }}</ng-template>
+      <ng-template matStepContent>
+        <app-app-data-form [appDataForm]="appData"></app-app-data-form>
+        <ng-content></ng-content>
+      </ng-template>
+    </mat-step>
+  </mat-vertical-stepper>
+</form>

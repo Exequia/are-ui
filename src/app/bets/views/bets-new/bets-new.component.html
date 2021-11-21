@@ -1,0 +1,13 @@
+<ng-container *ngFor="let profile of profiles | async">
+  <mat-card *ngIf="profile" class="cursor-pointer mb-3" (click)="selectProfile(profile)" [ngClass]="{ disabled: profile.disabled, zoom: !profile.disabled }">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon *ngIf="profile.icon" class="me-2">
+          <span class="material-icons-round"> {{ profile.icon }} </span>
+        </mat-icon>
+        {{ 'bets.profile.' + profile.id + '.title' | translate }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ 'bets.profile.' + profile.id + '.subtitle' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</ng-container>

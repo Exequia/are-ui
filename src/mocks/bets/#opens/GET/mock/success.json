@@ -1,0 +1,14 @@
+[
+  {
+    "profileId": "pregnancy",
+    "config": {
+      "betId": "",
+      "ownerId": "Fénix",
+      "startDate": "2021-10-29T18:40:55.056Z",
+      "endDate": "2021-12-05T23:59:59.056Z",
+      "name": "Embarazo Laura y Miki",
+      "statusId": 1
+    },
+    "model": { "name": "Mini Mike", "sex": "male", "birthDate": "2021-12-01T00:00:00.000Z", "birthTime": "16:15:13", "weight": 3.8, "height": 42 }
+  }
+]

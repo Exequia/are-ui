@@ -1,0 +1,27 @@
+<mat-card class="cursor-pointer zoom mb-3" routerLink="/bets/new">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon><span class="material-icons-round"> add </span></mat-icon>&nbsp;{{ 'bets.dashboard.new.title' | translate }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ 'bets.dashboard.new.subtitle' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+
+<mat-card class="cursor-pointer zoom mb-3" routerLink="/bets/opens">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon><span class="material-icons-round"> payments </span></mat-icon>&nbsp;{{ 'bets.dashboard.opens.title' | translate }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ 'bets.dashboard.opens.subtitle' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+
+<!-- <mat-card class="cursor-pointer zoom" routerLink="/bets/results"> -->
+<mat-card class="cursor-pointer zoom" class="disabled">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon><span class="material-icons-round"> assessment </span></mat-icon>&nbsp;{{ 'bets.dashboard.results.title' | translate }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ 'bets.dashboard.results.subtitle' | translate }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

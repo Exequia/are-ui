@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="name-app">
+    <button mat-icon-button aria-label="Home icon" routerLink="/" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+    </button>
+  </span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="user | async; let _user; else: loggedOut">
+    <span> {{ _user.alias }} </span>
+    <!-- <span>
+      <button mat-icon-button aria-label="Settings icon" routerLink="/users" routerLinkActive="active">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </span> -->
+    <span>
+      <button mat-icon-button aria-label="Logout icon" (click)="doLogout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </span>
+  </ng-container>
+</mat-toolbar>
+
+<ng-template #loggedOut>
+  <span>
+    <button mat-icon-button aria-label="Login icon" routerLink="/users" routerLinkActive="active">
+      <mat-icon>login</mat-icon>
+    </button>
+  </span>
+</ng-template>

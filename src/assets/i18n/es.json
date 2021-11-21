@@ -1,0 +1,160 @@
+{
+  "commons": {
+    "accept": "Aceptar",
+    "cancel": "Cancelar",
+    "reset": "Borrar",
+    "email": "Email",
+    "password": "Contraseña",
+    "clear": "Borrar",
+    "errors": {
+      "required": "El campo es obligatorio",
+      "email": "El formato introducido no es válido",
+      "notSame": "Los valores no coinciden",
+      "authGuard": "Necesita estar identificado para acceder"
+    },
+    "lost": "¿Perdido?",
+    "backHome": "Imposible! Aquí está el atajo que buscabas al",
+    "home": "inicio"
+  },
+  "api": {
+    "response": {
+      "saveSuccess": "Los datos se han guardado correctamente"
+    },
+    "errors": {
+      "general": "Se ha producido un error",
+      "saveFail": "Algo ha ido mal. Los datos se han guardado correctamente",
+      "badCredentials": "Los datos de identificación no son correctos",
+      "emailNotNull": "El campo Email no puede estar vacío",
+      "emailExists": "El email indicado ya existe en la base de datos y debe ser único",
+      "aliasNotNull": "El campo Alias no puede estar vacío",
+      "aliasNotEmpty": "El campo Alias no puede estar vacío",
+      "betIdNotExists": "La apuesta indicada no se ha encontrado"
+    }
+  },
+  "sidebar": {
+    "bets": "Apuestas",
+    "games": "Juegos"
+  },
+  "home": {
+    "bets": {
+      "title": "Apuestas",
+      "subtitle": "Crea y/o participa en apuestas. Consulta resultados y si has tenido suerte... restregaselo a otros por la cara"
+    }
+  },
+  "login": {
+    "title": "Identificación",
+    "subtitle": "Introduzca las credenciales",
+    "rememberMe": "Recuérdame!  ",
+    "areYouNew": "¿Eres nuevo?",
+    "singUp": "Regístrate"
+  },
+  "users": {
+    "personalData": "Datos Personales",
+    "appData": "Datos de la aplicación",
+    "name": "Nombre",
+    "surname": "Primer apellido",
+    "lastName": "Segundo apellido",
+    "alias": "Nombre de usuario",
+    "confirmEmail": "Confirmar Email",
+    "emailPattern": "El formato del email debe ser aa@bb.cc",
+    "passwordPH": "Entre su contraseña",
+    "confirmPassword": "Confirmación de contraseña",
+    "confirmPasswordPH": "Repita la contraseña",
+    "confirmPasswordHint": "Las contraseñas deben ser exactamente iguales"
+  },
+  "bets": {
+    "dashboard": {
+      "new": {
+        "title": "Crear nueva apuesta",
+        "subtitle": "Cree una nuevaa puesta para permitir a otros usuarios participar en ella"
+      },
+      "opens": {
+        "title": "Participar en apuesta",
+        "subtitle": "Consulte las apuestas abiertas actualmente en las que puede participar"
+      },
+      "results": {
+        "title": "Resultados",
+        "subtitle": "Consulte los resultados de apuestas en las que participó",
+        "see": "Ver resultados"
+      }
+    },
+    "profile": {
+      "1": {
+        "title": "Embarazo",
+        "subtitle": "Configuración de fecha, hora, sexo, nombre, etc...",
+        "fields": {
+          "name": {
+            "label": "Nombre",
+            "placeholder": "Mini Mike"
+          },
+          "sex": {
+            "label": "Sexo",
+            "placeholder": "Cuanto más, mejor",
+            "description": "Selectionar una de las opciones",
+            "options": {
+              "male": "Hombre",
+              "female": "Mujer"
+            }
+          },
+          "birthDate": {
+            "label": "Fecha de nacimiento",
+            "placeholder": "dd/mm/yyyy",
+            "description": "Haga click y escoja la fecha esperada de nacimiento"
+          },
+          "birthTime": {
+            "label": "Hora de nacimiento",
+            "placeholder": "19:50",
+            "description": "Introducir la hora esperada de nacimiento"
+          },
+          "weight": {
+            "label": "Peso",
+            "description": "Peso en Kilogramos"
+          },
+          "height": {
+            "label": "Altura",
+            "description": "Altura en CENTIMETROS"
+          }
+        }
+      },
+      "2": { "title": "Encuentro", "subtitle": "Configuración de un enfretamiento simple y sus posibles resultados" }
+    },
+    "opens": {
+      "startDate": "Fecha inicio",
+      "endDate": "Fecha fin",
+      "owner": "Propietario",
+      "new": "Nueva",
+      "close": "Cerrar Apuesta"
+    },
+    "bet": {
+      "validUntil": "Finalizará el",
+      "close": "Grabar resultados y cerrar"
+    },
+    "creation": {
+      "title": "Configuración nueva apuesta",
+      "subtitle": "Se creará una nueva apuesta con los datos del formulario",
+      "fields": {
+        "ownerName": {
+          "label": "Propietario",
+          "placeholder": "Ludopata",
+          "description": "Será quien gestione la apuesta"
+        },
+        "name": {
+          "label": "Nombre Apuesta",
+          "placeholder": "¿Quién tendrá razón esta vez?",
+          "description": "Nombre descriptivo para identificar"
+        },
+        "startDate": {
+          "label": "Fecha de Inicio",
+          "placeholder": "dd-mm-yyyy",
+          "description": "Fecha para entrar apuestas"
+        },
+        "endDate": {
+          "label": "Fecha final",
+          "placeholder": "dd-mm-yyyy",
+          "description": "Fecha límite para entrar apuestas"
+        }
+      },
+      "participate": "Participar"
+    }
+  }
+}

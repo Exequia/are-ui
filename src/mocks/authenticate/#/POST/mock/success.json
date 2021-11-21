@@ -1,0 +1,22 @@
+{
+  "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJBcmUgQkUgVXNlcnMiLCJzdWIiOiJmbnhAZ21haWwuY29tIiwiaWF0IjoxNjM2ODI3NDAyLCJleHAiOjE2MzY4Nzc0MDIsIlJvbGVzIjpbImdvZCJdfQ.QgxOf72IrTM0vjhkYYxf1GhuwQ4AtvRrh9MFOsHLNVx9I1yjhGRiSiasN9T-WYRLZQIzpfSMjGFxVY9Iy-INrQ",
+  "tokenType": "Bearer",
+  "user": {
+    "email": "fnx@gmail.com",
+    "alias": "Fénix",
+    "role": {
+      "id": 1,
+      "name": "god"
+    },
+    "people": {
+      "firstName": "Fénix",
+      "lastName": "Fire",
+      "surname": null
+    },
+    "status": {
+      "id": 1,
+      "name": "pending"
+    },
+    "id": 63
+  }
+}

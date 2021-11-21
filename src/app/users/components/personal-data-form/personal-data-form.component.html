@@ -1,0 +1,25 @@
+<form class="form" [formGroup]="personalDataForm">
+  <mat-form-field>
+    <mat-label>{{ 'users.name' | translate }}</mat-label>
+    <input matInput [placeholder]="'users.name' | translate" type="text" formControlName="name" autofocus tabindex="1" />
+    <button mat-button *ngIf="name && (name?.dirty || name?.touched)" matSuffix mat-icon-button (click)="name?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="name?.invalid && (name?.dirty || name?.touched) && name?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'users.surname' | translate }}</mat-label>
+    <input matInput [placeholder]="'users.surname' | translate" type="text" formControlName="surname" tabindex="2" />
+    <button mat-button *ngIf="surname && (surname?.dirty || surname?.touched)" matSuffix mat-icon-button (click)="surname?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="surname?.invalid && (surname?.dirty || surname?.touched) && surname?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{ 'users.lastName' | translate }}</mat-label>
+    <input matInput [placeholder]="'users.lastName' | translate" type="text" formControlName="lastName" tabindex="3" />
+    <button mat-button *ngIf="lastName && (lastName?.dirty || lastName?.touched)" matSuffix mat-icon-button (click)="lastName?.reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>

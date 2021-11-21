@@ -1,0 +1,37 @@
+<ng-container *ngIf="openBets">
+  <ng-container *ngFor="let bet of openBets | async">
+    <mat-card *ngIf="bet" class="cursor-pointer zoom mb-3" (click)="selectBet(bet)">
+      <mat-card-header>
+        <mat-card-title> {{ bet.config?.name }} </mat-card-title>
+        <mat-card-subtitle>
+          <mat-icon *ngIf="bet.profile?.icon" class="me-2">
+            <span class="material-icons-round"> {{ bet.profile?.icon }} </span>
+          </mat-icon>
+          {{ 'bets.profile.' + bet.profile?.id + '.title' | translate }}
+          <div *ngIf="bet.config?.isNew" class="new">{{ 'bets.opens.new' | translate }}!</div>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div class="me-5">
+            <div fxLayout="column">
+              <p>{{ 'bets.opens.startDate' | translate }}: {{ bet.config?.startDate | date: getFormatDate() }}</p>
+              <p *ngIf="bet.config?.endDate">{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: getFormatDate() }}</p>
+            </div>
+          </div>
+          <div>
+            <div fxLayout="column">
+              <p>{{ 'bets.opens.owner' | translate }}: {{ bet.config?.ownerName }}</p>
+              <!-- <p *ngIf="bet.config?.statusId">{{ 'bets.opens.status' | translate }}: {{ 'bets.opens.status.' + bet.config?.statusId + '.title' | translate }}</p> -->
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="areForm.reset()"></button> -->
+        <button *ngIf="bet?.config?.isMyBet" mat-raised-button color="primary" class="btn-block" (click)="closeBet(bet)">{{ 'bets.opens.close' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</ng-container>

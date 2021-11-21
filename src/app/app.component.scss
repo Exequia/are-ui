@@ -1,0 +1,22 @@
+@import 'variables';
+
+.sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  mat-sidenav {
+    padding: $med-relative-size $min-relative-size;
+    min-width: 15%;
+  }
+}
+
+.container {
+  margin: $med-relative-size auto;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  // height: 100%;
+}

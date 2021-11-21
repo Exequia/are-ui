@@ -1,0 +1,39 @@
+button {
+  mat-spinner {
+    zoom: 0.2;
+    -moz-transform: scale(0.2);
+    margin-top: 42px !important;
+    position: absolute;
+    animation-name: SpinnerInSpinner;
+    animation-duration: 0.5s;
+  }
+  span.loading {
+    zoom: 0.8;
+    margin-left: 30px;
+    animation-name: SpinnerInSpan;
+    animation-duration: 0.5s;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @keyframes SpinnerInSpan {
+    from {
+      zoom: 1;
+      margin-left: 0px;
+    }
+    to {
+      zoom: 0.8;
+      margin-left: 30px;
+    }
+  }
+
+  @keyframes SpinnerInSpinner {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
