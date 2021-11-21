@@ -58,7 +58,7 @@ export class UserUtils {
       {
         email: new FormControl(appData.email, [Validators.email, Validators.required]),
         confirmEmail: new FormControl(appData.email, [Validators.email, Validators.required]),
-        nickName: new FormControl(appData.alias, Validators.required),
+        alias: new FormControl(appData.alias, Validators.required),
         password: new FormControl('', Validators.required),
         confirmPassword: new FormControl('', Validators.required)
       },

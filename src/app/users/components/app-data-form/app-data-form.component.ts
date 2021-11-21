@@ -33,8 +33,8 @@ export class AppDataFormComponent implements OnInit {
     return this.appDataForm?.get('confirmEmail');
   }
 
-  get nickName() {
-    return this.appDataForm?.get('nickName');
+  get alias() {
+    return this.appDataForm?.get('alias');
   }
 
   get password() {

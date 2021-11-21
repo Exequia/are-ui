@@ -44,7 +44,7 @@
   "login": {
     "title": "Identificación",
     "subtitle": "Introduzca las credenciales",
-    "rememberMe": "Recuerdame!  ",
+    "rememberMe": "Recuérdame!  ",
     "areYouNew": "¿Eres nuevo?",
     "singUp": "Regístrate"
   },
@@ -54,7 +54,7 @@
     "name": "Nombre",
     "surname": "Primer apellido",
     "lastName": "Segundo apellido",
-    "nickName": "Nombre de usuario",
+    "alias": "Nombre de usuario",
     "confirmEmail": "Confirmar Email",
     "emailPattern": "El formato del email debe ser aa@bb.cc",
     "passwordPH": "Entre su contraseña",

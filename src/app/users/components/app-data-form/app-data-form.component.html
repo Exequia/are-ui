@@ -1,8 +1,8 @@
 <form class="form" [formGroup]="appDataForm">
   <mat-form-field>
-    <mat-label>{{ 'users.nickName' | translate }}</mat-label>
-    <input matInput [placeholder]="'users.nickName' | translate" type="text" formControlName="nickName" tabindex="4" />
-    <button mat-button *ngIf="nickName && (nickName.dirty || nickName.touched)" matSuffix mat-icon-button (click)="nickName.reset()">
+    <mat-label>{{ 'users.alias' | translate }}</mat-label>
+    <input matInput [placeholder]="'users.alias' | translate" type="text" formControlName="alias" tabindex="4" />
+    <button mat-button *ngIf="alias && (alias.dirty || alias.touched)" matSuffix mat-icon-button (click)="alias.reset()">
       <mat-icon>close</mat-icon>
     </button>
     <mat-error *ngIf="password?.invalid && (password?.dirty || password?.touched) && password?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
@@ -23,7 +23,7 @@
     <button mat-button *ngIf="confirmEmail && (confirmEmail?.dirty || confirmEmail?.touched)" matSuffix mat-icon-button (click)="confirmEmail?.reset()">
       <mat-icon>close</mat-icon>
     </button>
-    <mat-hint [innerHtml]="'users.emailPattern' | translate"></mat-hint>
+    <!-- <mat-hint [innerHtml]="'users.emailPattern' | translate"></mat-hint> -->
     <mat-error
       *ngIf="confirmEmail?.invalid && (confirmEmail?.dirty || confirmEmail?.touched) && confirmEmail?.errors?.required"
       [innerHtml]="'commons.errors.required' | translate"
