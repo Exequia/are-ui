@@ -15,7 +15,10 @@
     </button>
     <mat-hint [innerHtml]="'users.emailPattern' | translate"></mat-hint>
     <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched) && email?.errors?.required" [innerHtml]="'commons.errors.required' | translate"></mat-error>
-    <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched) && email?.errors?.email" [innerHtml]="'commons.errors.email' | translate"></mat-error>
+    <mat-error
+      *ngIf="email?.invalid && (email?.dirty || email?.touched) && !email?.errors?.required && email?.errors?.email"
+      [innerHtml]="'commons.errors.email' | translate"
+    ></mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>{{ 'users.confirmEmail' | translate }}</mat-label>
