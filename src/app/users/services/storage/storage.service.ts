@@ -56,8 +56,8 @@ export class StorageService {
   setUserCredentials(authResponse: AuthResponse) {
     localStorage.removeItem(USER_KEY);
     localStorage.setItem(USER_KEY, JSON.stringify(authResponse.user));
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.setItem(TOKEN_KEY, authResponse.accessToken);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.setItem(TOKEN_KEY, authResponse.accessToken);
   }
 
   signOut(): void {
