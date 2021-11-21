@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseURL: 'https://are-bk-dev.herokuapp.com/'
+  apiBaseURL: 'https://are-bk-prod.herokuapp.com/'
 };
 
 /*
