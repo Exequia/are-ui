@@ -81,40 +81,7 @@
     "profile": {
       "1": {
         "title": "Embarazo",
-        "subtitle": "Configuración de fecha, hora, sexo, nombre, etc...",
-        "fields": {
-          "name": {
-            "label": "Nombre",
-            "placeholder": "Mini Mike"
-          },
-          "sex": {
-            "label": "Sexo",
-            "placeholder": "Cuanto más, mejor",
-            "description": "Selectionar una de las opciones",
-            "options": {
-              "male": "Hombre",
-              "female": "Mujer"
-            }
-          },
-          "birthDate": {
-            "label": "Fecha de nacimiento",
-            "placeholder": "dd/mm/yyyy",
-            "description": "Haga click y escoja la fecha esperada de nacimiento"
-          },
-          "birthTime": {
-            "label": "Hora de nacimiento",
-            "placeholder": "19:50",
-            "description": "Introducir la hora esperada de nacimiento"
-          },
-          "weight": {
-            "label": "Peso",
-            "description": "Peso en Kilogramos"
-          },
-          "height": {
-            "label": "Altura",
-            "description": "Altura en CENTIMETROS"
-          }
-        }
+        "subtitle": "Configuración de fecha, hora, sexo, nombre, etc..."
       },
       "2": { "title": "Encuentro", "subtitle": "Configuración de un enfretamiento simple y sus posibles resultados" }
     },
@@ -123,7 +90,8 @@
       "endDate": "Fecha fin",
       "owner": "Propietario",
       "new": "Nueva",
-      "close": "Cerrar Apuesta"
+      "close": "Cerrar Apuesta",
+      "bets": "Ver Apuestas"
     },
     "bet": {
       "validUntil": "Finalizará el",
@@ -155,6 +123,45 @@
         }
       },
       "participate": "Participar"
+    },
+    "allBets": {
+      "title": "Apuestas registradas"
+    },
+    "fields": {
+      "userName": {
+        "label": "Usuario"
+      },
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Mini Mike"
+      },
+      "sex": {
+        "label": "Sexo",
+        "placeholder": "Cuanto más, mejor",
+        "description": "Selectionar una de las opciones",
+        "options": {
+          "male": "Hombre",
+          "female": "Mujer"
+        }
+      },
+      "birthDate": {
+        "label": "Fecha de nacimiento",
+        "placeholder": "dd/mm/yyyy",
+        "description": "Haga click y escoja la fecha esperada de nacimiento"
+      },
+      "birthTime": {
+        "label": "Hora de nacimiento",
+        "placeholder": "19:50",
+        "description": "Introducir la hora esperada de nacimiento"
+      },
+      "weight": {
+        "label": "Peso",
+        "description": "Peso en Kilogramos"
+      },
+      "height": {
+        "label": "Altura",
+        "description": "Altura en CENTIMETROS"
+      }
     }
   }
 }

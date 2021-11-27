@@ -9,9 +9,10 @@ import { BetsOpensComponent } from './views/bets-opens/bets-opens.component';
 import { BetsResultsComponent } from './views/bets-results/bets-results.component';
 import { BetsCreationComponent } from './views/bets-creation/bets-creation.component';
 import { BetsBetComponent } from './views/bets-bet/bets-bet.component';
+import { AllBetsComponent } from './views/all-bets/all-bets.component';
 
 @NgModule({
-  declarations: [BetsDashboardComponent, BetsNewComponent, BetsOpensComponent, BetsResultsComponent, BetsCreationComponent, BetsBetComponent],
+  declarations: [BetsDashboardComponent, BetsNewComponent, BetsOpensComponent, BetsResultsComponent, BetsCreationComponent, BetsBetComponent, AllBetsComponent],
   imports: [CommonModule, BetsRoutingModule, SharedModule]
 })
 export class BetsModule {}

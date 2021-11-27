@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+import { DataTable } from 'app/shared/models/dataTable';
 import { Observable, of } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import * as fromRoot from 'store';
@@ -11,7 +13,7 @@ import { BetsUtilsService } from './bets-utils.service';
   providedIn: 'root'
 })
 export class BetsFacadeService {
-  constructor(private store: Store<fromRoot.RootState>, private betsUtils: BetsUtilsService) {}
+  constructor(private store: Store<fromRoot.RootState>, private betsUtils: BetsUtilsService, private translate: TranslateService) {}
 
   getSelectedProfile(): Observable<Bet | undefined> {
     return this.store.pipe(
@@ -26,5 +28,12 @@ export class BetsFacadeService {
     const bet = this.betsUtils.getBetFromProfile(profile);
     bet.config.formlyData.model = model;
     return of(bet);
+  }
+
+  getBetResults(selector: any): Observable<DataTable> {
+    return this.store.pipe(
+      select(selector),
+      map(betResponse => this.betsUtils.castBetResponseToTableData(betResponse))
+    );
   }
 }

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 6,
+    "name": "¿Cómo se llamará el hijo del Miki?",
+    "profileId": 1,
+    "fields": "[{\"key\":\"name\",\"type\":\"input\",\"templateOptions\":{\"label\":\"Nombre\",\"placeholder\":\"Mini Mike\",\"required\":true}},{\"key\":\"sex\",\"type\":\"select\",\"templateOptions\":{\"label\":\"Sexo\",\"placeholder\":\"Cuanto más, mejor\",\"description\":\"Selectionar una de las opciones\",\"options\":[{\"label\":\"Hombre\",\"value\":\"male\"},{\"label\":\"Mujer\",\"value\":\"female\"}],\"required\":true}},{\"fieldGroup\":[{\"key\":\"birthDate\",\"type\":\"datepicker\",\"templateOptions\":{\"label\":\"Fecha de nacimiento\",\"placeholder\":\"dd/mm/yyyy\",\"description\":\"Haga click y escoja la fecha esperada de nacimiento\",\"required\":true,\"datepickerOptions\":{\"min\":\"2021-11-21T16:00:34.356Z\"}}},{\"key\":\"birthTime\",\"type\":\"time\",\"defaultValue\":\"0\",\"templateOptions\":{\"label\":\"Hora de nacimiento\",\"placeholder\":\"19:50\",\"description\":\"Introducir la hora esperada de nacimiento\",\"required\":true}}]},{\"key\":\"weight\",\"type\":\"slider\",\"defaultValue\":0,\"templateOptions\":{\"label\":\"Peso\",\"description\":\"Peso en Kilogramos\",\"thumbLabel\":true,\"step\":0.1,\"max\":10,\"required\":true},\"expressionProperties\":{}},{\"key\":\"height\",\"type\":\"slider\",\"defaultValue\":0,\"templateOptions\":{\"label\":\"Altura\",\"description\":\"Altura en CENTIMETROS\",\"thumbLabel\":true,\"step\":1,\"max\":100,\"required\":true},\"expressionProperties\":{}}]",
+    "model": "{\"ownerName\":\"Miki\",\"startDate\":\"2021-11-21T16:00:34.354Z\",\"name\":\"¿Cómo se llamará el hijo del Miki?\",\"endDate\":\"2021-12-19T23:00:00.000Z\"}",
+    "result": null,
+    "statusId": 1,
+    "startDate": null,
+    "endDate": null,
+    "addedBet": null,
+    "ownerId": null
+  }
+]

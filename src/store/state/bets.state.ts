@@ -1,4 +1,4 @@
-import { Bet } from 'app/bets/models/bet';
+import { Bet, BetResponse } from 'app/bets/models/bet';
 import { BetProfile, BetProfileId } from 'app/bets/models/betProfile';
 
 export interface BetsState {
@@ -6,6 +6,7 @@ export interface BetsState {
   openBets?: Bet[];
   selectProfile?: BetProfile;
   selectedBet?: Bet;
+  betResponse?: BetResponse;
 }
 
 export const initialBetsState: BetsState = {

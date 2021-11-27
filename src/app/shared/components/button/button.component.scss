@@ -9,6 +9,7 @@ button {
   }
   span.loading {
     zoom: 0.8;
+    -moz-transform: scale(0.8);
     margin-left: 30px;
     animation-name: SpinnerInSpan;
     animation-duration: 0.5s;
@@ -20,10 +21,12 @@ button {
   @keyframes SpinnerInSpan {
     from {
       zoom: 1;
+      -moz-transform: scale(1);
       margin-left: 0px;
     }
     to {
       zoom: 0.8;
+      -moz-transform: scale(0.8);
       margin-left: 30px;
     }
   }

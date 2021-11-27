@@ -1,0 +1,24 @@
+<ng-container *ngIf="allBetsResults | async; let _allBetsResults">
+  <mat-card class="mb-3">
+    <mat-card-header>
+      <mat-card-title> {{ 'bets.allBets.title' | translate }} </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- <h3>{{ 'bets.allBets.title' | translate }}</h3> -->
+      <ngx-datatable
+        class="material striped"
+        [rows]="_allBetsResults.rows"
+        [columns]="_allBetsResults.columns"
+        [columnMode]="ColumnMode.force"
+        [limit]="10"
+        rowHeight="auto"
+        [reorderable]="reorderable"
+        [scrollbarH]="true"
+      >
+        <ngx-datatable-column name="userName" [frozenLeft]="true"> </ngx-datatable-column>
+        <ngx-datatable-column name="usuario" [frozenLeft]="true"> </ngx-datatable-column>
+      </ngx-datatable>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

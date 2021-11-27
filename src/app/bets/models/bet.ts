@@ -17,6 +17,7 @@ export interface BetResponse {
   startDate?: Date;
   endDate?: Date;
   addedBet?: string;
+  allBets?: AllBetResponse[];
   ownerId?: number;
 }
 
@@ -36,4 +37,10 @@ export interface CreateBetRequest {
   fields: string;
   model: string;
   profileId?: BetProfileId;
+}
+
+export interface AllBetResponse {
+  userName: string;
+  model: string;
+  isMyBet?: boolean;
 }
