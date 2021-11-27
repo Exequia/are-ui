@@ -1,18 +1,23 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { get } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import * as fromRoot from 'store';
 import { SnackBarConfiguration } from 'store';
+import { slideInAnimation } from './shared/animations';
 import { SnackBarTemplateComponent } from './theme/components/snackbar-template/snackbar-template.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+
+  // make slide in/out animation available to this component
+  animations: [slideInAnimation]
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
@@ -64,6 +69,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.store.dispatch(fromRoot.resetSnackBar());
         this.snackBarDismissedSubscription?.unsubscribe();
       });
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet?.activatedRouteData?.['animation'];
   }
 
   ngOnDestroy() {

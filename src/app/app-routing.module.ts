@@ -7,18 +7,21 @@ import { PageNotFoundComponent } from './theme/views/page-not-found/page-not-fou
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    data: { animation: 'home' }
   },
   {
     path: 'users',
-    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+    data: { animation: 'users' }
   },
   {
     path: 'bets',
     loadChildren: () => import('./bets/bets.module').then(m => m.BetsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { animation: 'bets' }
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent, data: { animation: 'notFound' } }
 ];
 
 @NgModule({

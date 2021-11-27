@@ -7,8 +7,8 @@
     <app-navbar></app-navbar>
     <mat-progress-bar *ngIf="loading | async" mode="indeterminate" color="accent"></mat-progress-bar>
 
-    <section class="container">
-      <router-outlet></router-outlet>
+    <section class="container" [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
     </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -48,9 +48,9 @@ const formlyModules = [FormlyMaterialModule, FormlyMatDatepickerModule, FormlyMa
     ...formlyModules,
     NgxDatatableModule.forRoot({
       messages: {
-        emptyMessage: 'No data to display', // Message to show when array is presented, but contains no values
-        totalMessage: 'total', // Footer total message
-        selectedMessage: 'selected' // Footer selected message
+        emptyMessage: 'No hay datos para mostrar', // Message to show when array is presented, but contains no values
+        totalMessage: 'Total', // Footer total message
+        selectedMessage: 'Seleccionado' // Footer selected message
       }
     })
   ],
