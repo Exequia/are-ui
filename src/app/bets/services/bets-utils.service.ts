@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyTemplateOptions } from '@ngx-formly/core';
 import { TranslateService } from '@ngx-translate/core';
 import { TableColumn } from '@swimlane/ngx-datatable';
 import { DataTable } from 'app/shared/models/dataTable';
 import { FormlyData } from 'app/shared/models/formlyData';
 import { UtilsService } from 'app/shared/services/utils/utils.service';
 import { AppData } from 'app/users/models/user';
-import { isEqual } from 'lodash';
+import { has, isArray, isEqual } from 'lodash';
 import { take } from 'rxjs/operators';
 import * as fromRoot from 'store';
 import { getBetsProfiles } from 'store';
-import { Bet, BetResponse } from '../models/bet';
+import { AllBetResponse, Bet, BetResponse } from '../models/bet';
 import { BetConfig } from '../models/betConfig';
 import { BetProfile, BetProfileId } from '../models/betProfile';
 
@@ -81,7 +81,7 @@ export class BetsUtilsService {
         type: 'input',
         templateOptions: {
           label: this.translate.instant('bets.fields.name.label'),
-          placeholder: this.translate.instant('bets.fields.fields.name.placeholder'),
+          placeholder: this.translate.instant('bets.fields.name.placeholder'),
           required: true
         }
       },
@@ -89,12 +89,12 @@ export class BetsUtilsService {
         key: 'sex',
         type: 'select',
         templateOptions: {
-          label: this.translate.instant('bets.fields.fields.sex.label'),
-          placeholder: this.translate.instant('bets.fields.fields.sex.placeholder'),
-          description: this.translate.instant('bets.fields.fields.sex.description'),
+          label: this.translate.instant('bets.fields.sex.label'),
+          placeholder: this.translate.instant('bets.fields.sex.placeholder'),
+          description: this.translate.instant('bets.fields.sex.description'),
           options: [
-            { label: this.translate.instant('bets.fields.fields.sex.options.male'), value: 'male' },
-            { label: this.translate.instant('bets.fields.fields.sex.options.female'), value: 'female' }
+            { label: this.translate.instant('bets.fields.sex.options.male'), value: 'male' },
+            { label: this.translate.instant('bets.fields.sex.options.female'), value: 'female' }
           ],
           required: true
         }
@@ -105,9 +105,9 @@ export class BetsUtilsService {
             key: 'birthDate',
             type: 'datepicker',
             templateOptions: {
-              label: this.translate.instant('bets.fields.fields.birthDate.label'),
-              placeholder: this.translate.instant('bets.fields.fields.birthDate.placeholder'),
-              description: this.translate.instant('bets.fields.fields.birthDate.description'),
+              label: this.translate.instant('bets.fields.birthDate.label'),
+              placeholder: this.translate.instant('bets.fields.birthDate.placeholder'),
+              description: this.translate.instant('bets.fields.birthDate.description'),
               required: true,
               datepickerOptions: {
                 min: new Date()
@@ -119,9 +119,9 @@ export class BetsUtilsService {
             type: 'time',
             defaultValue: '0',
             templateOptions: {
-              label: this.translate.instant('bets.fields.fields.birthTime.label'),
-              placeholder: this.translate.instant('bets.fields.fields.birthTime.placeholder'),
-              description: this.translate.instant('bets.fields.fields.birthTime.description'),
+              label: this.translate.instant('bets.fields.birthTime.label'),
+              placeholder: this.translate.instant('bets.fields.birthTime.placeholder'),
+              description: this.translate.instant('bets.fields.birthTime.description'),
               required: true
             }
           }
@@ -132,15 +132,15 @@ export class BetsUtilsService {
         type: 'slider',
         defaultValue: 0,
         templateOptions: {
-          label: this.translate.instant('bets.fields.fields.weight.label'),
-          description: this.translate.instant('bets.fields.fields.weight.description'),
+          label: this.translate.instant('bets.fields.weight.label'),
+          description: this.translate.instant('bets.fields.weight.description'),
           thumbLabel: true,
           step: 0.1,
           max: 10,
           required: true
         },
         expressionProperties: {
-          'templateOptions.label': model => `${this.translate.instant('bets.fields.fields.weight.label')}: ${model?.weight}`
+          'templateOptions.label': model => `${this.translate.instant('bets.fields.weight.label')}: ${model?.weight}`
         }
       },
       {
@@ -148,15 +148,15 @@ export class BetsUtilsService {
         type: 'slider',
         defaultValue: 0,
         templateOptions: {
-          label: this.translate.instant('bets.fields.fields.height.label'),
-          description: this.translate.instant('bets.fields.fields.height.description'),
+          label: this.translate.instant('bets.fields.height.label'),
+          description: this.translate.instant('bets.fields.height.description'),
           thumbLabel: true,
           step: 1,
           max: 100,
           required: true
         },
         expressionProperties: {
-          'templateOptions.label': model => `${this.translate.instant('bets.fields.fields.height.label')}: ${model?.height}`
+          'templateOptions.label': model => `${this.translate.instant('bets.fields.height.label')}: ${model?.height}`
         }
       }
     ];
@@ -165,7 +165,7 @@ export class BetsUtilsService {
   completeBets(openBetsData: BetResponse[]): Bet[] {
     const result: Bet[] = (openBetsData || []).map(betData => {
       const model = this.utils.parseResponseString(betData?.model);
-      const fields = this.utils.parseResponseString(betData?.fields);
+      const fields = this.updateLabels(this.utils.parseResponseString(betData?.fields));
       const betModel = !!betData.addedBet ? this.utils.parseResponseString(betData.addedBet) : {};
       return <Bet>{
         profile: this.getProfile(betData.profileId),
@@ -190,6 +190,55 @@ export class BetsUtilsService {
     });
     const sort = result.sort(this.compareDate);
     return sort;
+  }
+
+  updateLabels(dirtyFields: FormlyFieldConfig[]): FormlyFieldConfig[] {
+    return (dirtyFields || []).map(field => {
+      if (has(field, 'fieldGroup')) {
+        field.fieldGroup = field.fieldGroup && this.updateLabels(field.fieldGroup);
+      } else {
+        field.templateOptions = this.updateFieldLabels(field.key?.toString(), field.templateOptions);
+      }
+      return field;
+    });
+  }
+
+  updateFieldLabels(fieldKey: string = '', templateOptions: FormlyTemplateOptions | undefined): FormlyTemplateOptions | undefined {
+    if (!!templateOptions?.label) {
+      templateOptions.label = this.translate.instant(`bets.fields.${fieldKey}.label`);
+    }
+    if (!!templateOptions?.placeholder) {
+      templateOptions.placeholder = this.translate.instant(`bets.fields.${fieldKey}.placeholder`);
+    }
+    if (!!templateOptions?.description) {
+      templateOptions.description = this.translate.instant(`bets.fields.${fieldKey}.description`);
+    }
+    if (!!templateOptions?.options && isArray(templateOptions.options)) {
+      templateOptions.options = (templateOptions.options || []).map(option => ({
+        ...option,
+        label: this.translate.instant(`bets.fields.${fieldKey}.options.${option.value}`)
+      }));
+    }
+    return templateOptions;
+  }
+
+  parseAllBetsResponse(betReponse: BetResponse): BetResponse {
+    const cleanBet = { ...betReponse, allBets: this.parseAllBets(betReponse?.allBets) };
+    return cleanBet;
+  }
+
+  parseAllBets(allBets: AllBetResponse[] | undefined): AllBetResponse[] {
+    return (allBets || []).map(bet => {
+      return <AllBetResponse>{ ...bet, model: this.parseAllBetsModel(bet?.model) };
+    });
+  }
+
+  parseAllBetsModel(model: any): string {
+    const modelObject = this.utils.parseResponseString(model);
+    if (!!modelObject.sex) {
+      modelObject.sex = this.translate.instant(`bets.fields.sex.options.${modelObject.sex}`);
+    }
+    return JSON.stringify(modelObject);
   }
 
   private sortByStartDate(a: Bet, b: Bet) {

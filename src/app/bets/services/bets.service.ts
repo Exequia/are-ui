@@ -32,7 +32,7 @@ export class BetsService {
   }
 
   loadAllBets(betId: number): Observable<BetResponse> {
-    const url = `${environment.apiBaseURL}bets/loadAllBets/${betId}`;
+    const url = `${environment.apiBaseURL}bets/allBets/${betId}`;
     return this.http.get<BetResponse>(url).pipe(retry(3));
   }
 

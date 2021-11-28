@@ -20,11 +20,15 @@ export class UtilsService {
   }
 
   parseValue(value: any): any {
-    return this.parseStringDateToDate(value);
+    if (isNaN(value)) {
+      return this.parseStringDateToDate(value.toString());
+    } else {
+      return value;
+    }
   }
 
   parseStringDateToDate(stringDate: string): any {
-    const date: any = new Date(stringDate);
+    const date: any = stringDate.length - 1 === stringDate.indexOf('Z') ? new Date(stringDate.toString()) : stringDate;
     return isNaN(date) ? stringDate : (date as Date).toLocaleDateString();
   }
 }

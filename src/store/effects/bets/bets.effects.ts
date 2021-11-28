@@ -110,7 +110,8 @@ export class BetsEffects {
         mergeMap(payload =>
           this.betsService.loadAllBets(payload.betId).pipe(
             map((betReponse: BetResponse) => {
-              this.store.dispatch(fromRoot.setBetResponse({ betReponse }));
+              const cleanResponse = this.betsUtils.parseAllBetsResponse(betReponse);
+              this.store.dispatch(fromRoot.setBetResponse({ betReponse: cleanResponse }));
             })
           )
         )
