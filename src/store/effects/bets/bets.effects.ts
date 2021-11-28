@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { BetResponse } from 'app/bets/models/bet';
 import { BetsUtilsService } from 'app/bets/services/bets-utils.service';
 import { BetsService } from 'app/bets/services/bets.service';
 import { EMPTY } from 'rxjs';
@@ -95,6 +96,22 @@ export class BetsEffects {
               const snackBarConfig = { translationPath: `api.errors.${error.message || 'saveFail'}` };
               this.store.dispatch(fromRoot.showSnackBar({ snackBarConfig }));
               return EMPTY;
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
+
+  loadAllBets$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.loadAllBets),
+        mergeMap(payload =>
+          this.betsService.loadAllBets(payload.betId).pipe(
+            map((betReponse: BetResponse) => {
+              const cleanResponse = this.betsUtils.parseAllBetsResponse(betReponse);
+              this.store.dispatch(fromRoot.setBetResponse({ betReponse: cleanResponse }));
             })
           )
         )

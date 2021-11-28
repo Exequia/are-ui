@@ -31,6 +31,11 @@ export class BetsService {
     return this.http.post<AddBetResponse>(url, betRequest).pipe(retry(3));
   }
 
+  loadAllBets(betId: number): Observable<BetResponse> {
+    const url = `${environment.apiBaseURL}bets/allBets/${betId}`;
+    return this.http.get<BetResponse>(url).pipe(retry(3));
+  }
+
   // private handleError(error: HttpErrorResponse) {
   //   if (error.status === 0) {
   //     // A client-side or network error occurred. Handle it accordingly.
