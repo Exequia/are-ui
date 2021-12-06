@@ -1,4 +1,6 @@
 <button mat-raised-button [color]="color" class="btn-block" [disabled]="disabled || loading" (click)="emmitClick()" [ngClass]="{ loading: loading }">
-  <mat-spinner [color]="loadingColor" *ngIf="loading"></mat-spinner>
-  <span [ngClass]="{ loading: loading }">{{ text | translate }}</span>
+  <mat-icon *ngIf="loading" [color]="loadingColor">
+    <mat-spinner diameter="20"></mat-spinner>
+  </mat-icon>
+  {{ text | translate }}
 </button>
