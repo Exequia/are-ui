@@ -5,9 +5,9 @@
     </mat-card-header>
 
     <mat-card-content>
-      <!-- <h3>{{ 'bets.allBets.title' | translate }}</h3> -->
       <ngx-datatable
         class="material striped"
+        [rowClass]="onGetRowClass"
         [rows]="_allBetsResults.rows"
         [columns]="_allBetsResults.columns"
         [columnMode]="ColumnMode.force"
@@ -16,8 +16,6 @@
         [reorderable]="reorderable"
         [scrollbarH]="true"
       >
-        <ngx-datatable-column name="userName" [frozenLeft]="true"> </ngx-datatable-column>
-        <ngx-datatable-column name="usuario" [frozenLeft]="true"> </ngx-datatable-column>
       </ngx-datatable>
     </mat-card-content>
   </mat-card>

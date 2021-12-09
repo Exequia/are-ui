@@ -43,4 +43,5 @@ export interface AllBetResponse {
   userName: string;
   model: string;
   isMyBet?: boolean;
+  isResult?: boolean;
 }
