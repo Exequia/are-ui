@@ -3,7 +3,7 @@ var path = require('path');
 
 mockServer({
   restPath: path.join(__dirname, 'src/mocks'),
-  // optionsFallbackPath: `${__dirname}/src/mocks/_fallback/#options/OPTIONS/`,
+  optionsFallbackPath: `${__dirname}/src/mocks/_fallback/#options/OPTIONS/`,
   dirName: __dirname,
   title: 'ARE UI',
   version: 1,

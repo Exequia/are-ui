@@ -7,6 +7,7 @@ export interface BetsState {
   selectProfile?: BetProfile;
   selectedBet?: Bet;
   betResponse?: BetResponse;
+  closedBets?: Bet[];
 }
 
 export const initialBetsState: BetsState = {

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CLOSE } from 'app/shared/global.constants';
 import { AllBetsComponent } from './views/all-bets/all-bets.component';
 import { BetsBetComponent } from './views/bets-bet/bets-bet.component';
+import { BetsClosedComponent } from './views/bets-closed/bets-closed.component';
 import { BetsCreationComponent } from './views/bets-creation/bets-creation.component';
 import { BetsDashboardComponent } from './views/bets-dashboard/bets-dashboard.component';
 import { BetsNewComponent } from './views/bets-new/bets-new.component';
@@ -35,7 +36,11 @@ const routes: Routes = [
     component: AllBetsComponent
   },
   {
-    path: 'results',
+    path: 'closed',
+    component: BetsClosedComponent
+  },
+  {
+    path: 'result/:betId',
     component: BetsResultsComponent
   },
   {

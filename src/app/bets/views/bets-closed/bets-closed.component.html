@@ -1,0 +1,31 @@
+<ng-container *ngIf="closedBets">
+  <ng-container *ngFor="let bet of closedBets | async">
+    <mat-card *ngIf="bet" class="cursor-pointer zoom mb-3" (click)="selectBet(bet)">
+      <mat-card-header>
+        <mat-card-title> {{ bet.config?.name }} </mat-card-title>
+        <mat-card-subtitle>
+          <mat-icon *ngIf="bet.profile?.icon" class="me-2">
+            <span class="material-icons-round"> {{ bet.profile?.icon }} </span>
+          </mat-icon>
+          {{ 'bets.profile.' + bet.profile?.id + '.title' | translate }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div class="me-5">
+            <div fxLayout="column">
+              <p>{{ 'bets.opens.startDate' | translate }}: {{ bet.config?.startDate | date: getFormatDate() }}</p>
+              <p *ngIf="bet.config?.endDate">{{ 'bets.opens.endDate' | translate }}: {{ bet.config?.endDate | date: getFormatDate() }}</p>
+            </div>
+          </div>
+          <div>
+            <div fxLayout="column">
+              <p>{{ 'bets.opens.owner' | translate }}: {{ bet.config?.ownerName }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</ng-container>
