@@ -8,7 +8,6 @@ import { BetsCreationComponent } from './views/bets-creation/bets-creation.compo
 import { BetsDashboardComponent } from './views/bets-dashboard/bets-dashboard.component';
 import { BetsNewComponent } from './views/bets-new/bets-new.component';
 import { BetsOpensComponent } from './views/bets-opens/bets-opens.component';
-import { BetsResultsComponent } from './views/bets-results/bets-results.component';
 
 const routes: Routes = [
   {
@@ -41,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'result/:betId',
-    component: BetsResultsComponent
+    component: AllBetsComponent
   },
   {
     path: 'bet',
