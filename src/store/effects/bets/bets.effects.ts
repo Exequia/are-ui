@@ -118,4 +118,20 @@ export class BetsEffects {
       ),
     { dispatch: false }
   );
+
+  loadClosedBets$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRoot.loadClosedBets),
+        mergeMap(() =>
+          this.betsService.loadClosedBets().pipe(
+            map(closedBetsData => {
+              const closedBets = this.betsUtils.completeBets(closedBetsData);
+              return this.store.dispatch(fromRoot.setClosedBets({ closedBets }));
+            })
+          )
+        )
+      ),
+    { dispatch: false }
+  );
 }

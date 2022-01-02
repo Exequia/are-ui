@@ -7,3 +7,4 @@ export const getSelectedProfile = createSelector(getBetsFeatureState, state => c
 export const getOpenBets = createSelector(getBetsFeatureState, state => cloneDeep(state?.openBets));
 export const getSelectedBet = createSelector(getBetsFeatureState, state => cloneDeep(state?.selectedBet));
 export const getBetResponse = createSelector(getBetsFeatureState, state => cloneDeep(state?.betResponse));
+export const getClosedBets = createSelector(getBetsFeatureState, state => cloneDeep(state?.closedBets));

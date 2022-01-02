@@ -184,7 +184,7 @@ export class BetsUtilsService {
             form: new FormGroup({}),
             options: {}
           },
-          isMyBet: 0 === betData.ownerId
+          isMine: 0 === betData.ownerId
         }
       };
     });
@@ -224,6 +224,15 @@ export class BetsUtilsService {
 
   parseAllBetsResponse(betReponse: BetResponse): BetResponse {
     const cleanBet = { ...betReponse, allBets: this.parseAllBets(betReponse?.allBets) };
+    if (betReponse?.result) {
+      const result = this.parseAllBetsModel(betReponse?.result);
+      const betResult: AllBetResponse = {
+        userName: this.translate.instant(`bets.dashboard.results.title`),
+        model: result,
+        isResult: true
+      };
+      cleanBet.allBets = [betResult, ...(cleanBet?.allBets || [])];
+    }
     return cleanBet;
   }
 
@@ -331,10 +340,12 @@ export class BetsUtilsService {
     const model: any = betResponse?.allBets ? betResponse?.allBets[0]?.model : '{}';
     const columnsNames: string[] = ['userName', ...Object.keys(this.utils.parseResponseString(model))];
     const columns: TableColumn[] = columnsNames.map(columnName => ({ prop: columnName, name: this.translate.instant(`bets.fields.${columnName}.label`) } as TableColumn));
+    columns[0].frozenLeft = true;
     const rows = (betResponse?.allBets || []).map(bet => ({
       userName: bet?.userName || '',
       ...this.utils.parseModel(bet?.model || '{}'),
-      isMyBet: bet?.isMyBet || false
+      isMine: bet?.isMine || false,
+      isResult: bet?.isResult || false
     }));
     return <DataTable>{ columns, rows };
   }

@@ -13,3 +13,5 @@ export const closeBet = createAction('[Bets Component] Close Bet', props<{ betDa
 export const saveBetCreated = createAction('[Bets Component] Save Bet', props<{ betCreated: CreateBetRequest }>());
 export const loadAllBets = createAction('[Bets Component] Load all bets', props<{ betId: number }>());
 export const setBetResponse = createAction('[Bets Component] Set all bets', props<{ betReponse: BetResponse }>());
+export const loadClosedBets = createAction('[Bets Component] Load ClosedBets');
+export const setClosedBets = createAction('[Bets Component] Set Closed Bets', props<{ closedBets: Bet[] }>());

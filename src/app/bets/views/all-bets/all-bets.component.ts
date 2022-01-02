@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { AllBetResponse } from 'app/bets/models/bet';
 import { BetsFacadeService } from 'app/bets/services/bets-facade.service';
 import { DataTable } from 'app/shared/models/dataTable';
 import { Observable } from 'rxjs';
@@ -29,5 +30,10 @@ export class AllBetsComponent implements AfterViewInit {
         }
       })
       .unsubscribe();
+  }
+
+  onGetRowClass(row: AllBetResponse): string {
+    console.log(row);
+    return row?.isResult ? 'result' : row?.isMine ? 'mine' : '';
   }
 }
