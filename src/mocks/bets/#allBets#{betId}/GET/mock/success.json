@@ -14,7 +14,7 @@
     {
       "userName": "Fénix",
       "model": "{'birthTime':'22:50','weight':1.8,'height':64,'name':'Mini Mike','sex':'female','birthDate':'2021-12-31T23:00:00.000Z'}",
-      "isMyBet": true
+      "isMine": true
     },
     {
       "userName": "Marta",

@@ -184,7 +184,7 @@ export class BetsUtilsService {
             form: new FormGroup({}),
             options: {}
           },
-          isMyBet: 0 === betData.ownerId
+          isMine: 0 === betData.ownerId
         }
       };
     });
@@ -224,8 +224,8 @@ export class BetsUtilsService {
 
   parseAllBetsResponse(betReponse: BetResponse): BetResponse {
     const cleanBet = { ...betReponse, allBets: this.parseAllBets(betReponse?.allBets) };
-    if (betReponse?.results) {
-      const result = this.parseAllBetsModel(betReponse?.results);
+    if (betReponse?.result) {
+      const result = this.parseAllBetsModel(betReponse?.result);
       const betResult: AllBetResponse = {
         userName: this.translate.instant(`bets.dashboard.results.title`),
         model: result,
@@ -344,7 +344,7 @@ export class BetsUtilsService {
     const rows = (betResponse?.allBets || []).map(bet => ({
       userName: bet?.userName || '',
       ...this.utils.parseModel(bet?.model || '{}'),
-      isMyBet: bet?.isMyBet || false,
+      isMine: bet?.isMine || false,
       isResult: bet?.isResult || false
     }));
     return <DataTable>{ columns, rows };

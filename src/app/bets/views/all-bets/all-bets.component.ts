@@ -34,6 +34,6 @@ export class AllBetsComponent implements AfterViewInit {
 
   onGetRowClass(row: AllBetResponse): string {
     console.log(row);
-    return row?.isResult ? 'result' : row?.isMyBet ? 'mine' : '';
+    return row?.isResult ? 'result' : row?.isMine ? 'mine' : '';
   }
 }

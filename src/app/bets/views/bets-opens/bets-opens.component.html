@@ -30,7 +30,7 @@
       </mat-card-content>
       <mat-card-actions>
         <!-- <button mat-raised-button color="accent" class="btn-block" [innerHTML]="'commons.reset' | translate" (click)="areForm.reset()"></button> -->
-        <button *ngIf="bet?.config?.isMyBet" mat-raised-button color="primary" class="btn-block" (click)="closeBet(bet)">{{ 'bets.opens.close' | translate }}</button>
+        <button *ngIf="bet?.config?.isMine" mat-raised-button color="primary" class="btn-block" (click)="closeBet(bet)">{{ 'bets.opens.close' | translate }}</button>
         <button *ngIf="bet?.config?.id" mat-raised-button color="accent" class="btn-block" [routerLink]="['/bets/all-bets/', bet?.config?.id]">
           {{ 'bets.opens.bets' | translate }}
         </button>
